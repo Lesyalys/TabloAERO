@@ -1,7 +1,8 @@
 const Header = () => {
     return (
-        <div>
-            <h1 style={{color:'white'}}>Arrival</h1>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <h1>Arrival</h1>
+            <h1>Departure</h1>
         </div>
     )
 }
