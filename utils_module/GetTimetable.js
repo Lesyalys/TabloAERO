@@ -1,22 +1,23 @@
 import axios from 'axios';
-import {convertXML, createAST} from 'simple-xml-to-json';
 
-export async function GetTimetable(cb){
-    const config = {
-        method: 'get',
-        maxContentLength: Infinity,
-        url: 'http://172.17.7.30/FIDS/AG10.XML',
-        headers: {}
-    }
+export async function GetTimetable(){
+   
+    let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'http://127.0.0.1:3000/get/xalTablo',
+    headers: { }
+    };
 
     axios.request(config)
-    .then(responce => {
-        const dataXML = responce.data;
-        const XMLtoJSON = convertXML(dataXML);
-        const ast = createAST(dataXML);
-        ast
-        console.log(XMLtoJSON, ast);
-        cb("hi");
+    .then((response) => {
+    const dataJSON = JSON.stringify(response.data);
+    console.log(JSON.parse(dataJSON))
     })
+    .catch((error) => {
+    console.log(error);
+    });
+
+
 
 }

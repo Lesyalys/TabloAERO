@@ -2,7 +2,7 @@ import {GetTimetable} from '../../../utils_module/GetTimetable.js'
 
 const RowArrivalBody = () => {
 
-    GetTimetable((cb)=>console.log(cb));
+    GetTimetable();
     // console.log(data)
 
     return (
