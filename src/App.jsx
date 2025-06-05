@@ -10,9 +10,6 @@ function App() {
     <Header/>
       <RowArrivalHeader/>
         <RowArrivalBody/>
-        <RowArrivalBody/>
-        <RowArrivalBody/>
-        <RowArrivalBody/>
     </>
   )
 }

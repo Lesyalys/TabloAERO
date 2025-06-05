@@ -1,4 +1,10 @@
+import {GetTimetable} from '../../../utils_module/GetTimetable.js'
+
 const RowArrivalBody = () => {
+
+    GetTimetable((cb)=>console.log(cb));
+    // console.log(data)
+
     return (
         <>
         <div style={{
@@ -11,9 +17,9 @@ const RowArrivalBody = () => {
             padding: '10px',
             marginTop:'10px'}}>
 
-            <p>dsf</p>
-            <p>dsf</p>
-            <p>dsf</p>
+            <p>fdg</p>
+            <p>fdg</p>
+            <p>fdg</p>
         </div>
         </>
         
