@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
-import { GetTimetable } from '../../../utils_module/GetTimetable.js'
+import { GetTimetableDU } from '../../../utils_module/GetTimetableDU.js'
 import { RowBody } from './RowBody.jsx'
-// import '../../App.css'
 
-const RowArrivalBody = () => {
+const RowDepartureBody = () => {
     const [flightData, setFlightData] = useState([]);
 
     useEffect(() => {
 
-        GetTimetable((cb) => {
+        GetTimetableDU((cb) => {
             setFlightData(cb);
         });
 
         // const intervalId = setInterval(() => {
-        //     GetTimetable((cb) => {
+        //     GetTimetableDU((cb) => {
         //         console.log(cb);
         //         setFlightData(cb);
         //     });
@@ -28,4 +27,4 @@ const RowArrivalBody = () => {
 
     )
 }
-export { RowArrivalBody }
+export { RowDepartureBody }

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export async function GetTimetable(cb){
+export async function GetTimetableDU(cb){
    
     let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'http://127.0.0.1:3000/get/xalTabloAR',
+    url: 'http://127.0.0.1:3000/get/xalTabloDU',
     headers: { }
     };
 

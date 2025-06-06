@@ -1,13 +1,13 @@
-import Time from './Time';
+import { Time } from './Time';
 
 const Header = () => {
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <h1>Arrival</h1>
-            <Time/>
+            <Time />
             <h1>Departure</h1>
         </div>
     )
 }
 
-export {Header} 
+export { Header } 
