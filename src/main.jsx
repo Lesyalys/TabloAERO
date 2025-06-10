@@ -6,7 +6,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className="bg-slate-900 min-h-screen mx-12 text-white">
+    <div className=" min-h-screen mx-12 text-white pt-10">
       <App />
     </div>
   </StrictMode>,

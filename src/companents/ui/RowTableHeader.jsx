@@ -1,12 +1,12 @@
 const RowTableHeader = () => {
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>
-                <p>Время</p>
-                <p>Направление</p>
-                <p>Аэрапорт</p>
-                <p>Рейс</p>
-            </div>
+            <ul className="grid grid-cols-4 pt-5 gap-20">
+                <li>Время</li>
+                <li>Направление</li>
+                <li>Аэрапорт</li>
+                <li>Рейс</li>
+            </ul>
         </>
 
     )

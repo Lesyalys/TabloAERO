@@ -2,10 +2,11 @@ import { Time } from './Time';
 
 const Header = () => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h1>Arrival</h1>
+        <div 
+        className='flex-1/2  flex flex-row justify-between text-4xl items-center uppercase'>
+            <h1>Вылет</h1>
             <Time />
-            <h1>Departure</h1>
+            <h1>Прилет</h1>
         </div>
     )
 }

@@ -21,18 +21,18 @@ const RowBody = ({ flights }) => {
   };
 
   return (
-    <div className="w-1/2 bg-slate-800 rounded-xl p-2.5 mt-2.5">
+    <div className="w-1/2 rounded-xl mt-2.5">
       {flights.map((flight, index) => (
-        <div 
-          className="flex flex-row justify-between uppercase gap-4"
-          key={index}
-          style={{ marginBottom: index < flights.length - 1 ? '10px' : '0' }}
-        >
-          <p>{flight?.time || 'N/A'}</p>
-          <p>{renderDestination(flight)}</p>
-          <p>{renderFlightStatus(flight)}</p>
-          <p>{renderFlightNumber(flight)}</p>
-        </div>
+        <ul 
+          className={`grid grid-cols-4 gap-2.5 uppercase mb-2.5 last:mb-0 p-1.5
+                  ${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} rounded`}
+        key={index}
+      >
+          <li className="truncate"> {flight?.time || 'N/A'}</li>
+          <li className="truncate text-blue-300">{renderDestination(flight)}</li>
+          <li className="truncate">{renderFlightStatus(flight)}</li>
+          <li className="truncate  text-amber-300">{renderFlightNumber(flight)}</li>
+        </ul>
       ))}
     </div>
   );

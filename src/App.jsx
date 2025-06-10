@@ -12,7 +12,7 @@ function App() {
         <RowTableHeader />
         <RowTableHeader />
       </div>
-      <div className="flex flex-row justify-between gap-2.5">
+      <div className="flex flex-row justify-between mt-2.5 gap-2.5 pt-2">
         <RowArrivalBody />
         <RowDepartureBody />
       </div>
