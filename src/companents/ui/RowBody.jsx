@@ -21,11 +21,11 @@ const RowBody = ({ flights }) => {
   };
 
   return (
-    <div className="w-1/2 rounded-xl mt-2.5">
+    <div className="w-1/2 mt-2.5">
       {flights.map((flight, index) => (
         <ul 
-          className={`grid grid-cols-4 gap-2.5 uppercase mb-2.5 last:mb-0 p-1.5
-                  ${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} rounded`}
+          className={`grid grid-cols-4 uppercase last:mb-0 p-2.5
+                  ${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'}`}
         key={index}
       >
           <li className="truncate"> {flight?.time || 'N/A'}</li>
