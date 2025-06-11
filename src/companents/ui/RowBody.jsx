@@ -1,4 +1,5 @@
 // import '../../App.css';
+import { Time } from "./Time";
 
 const RowBody = ({ flights }) => {
   const renderFlightStatus = (flight) => {
@@ -28,10 +29,10 @@ const RowBody = ({ flights }) => {
                   ${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'}`}
         key={index}
       >
-          <li className="truncate"> {flight?.time || 'N/A'}</li>
+          <li className="truncate ">{flight.time}</li>
           <li className="truncate text-blue-300">{renderDestination(flight)}</li>
-          <li className="truncate">{renderFlightStatus(flight)}</li>
-          <li className="truncate  text-amber-300">{renderFlightNumber(flight)}</li>
+          <li className="truncate flex items-center justify-center">{renderFlightStatus(flight)}</li>
+          <li className="truncate  text-amber-300 flex items-end justify-center">{renderFlightNumber(flight)}</li>
         </ul>
       ))}
     </div>
