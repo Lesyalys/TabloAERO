@@ -12,6 +12,7 @@ export async function GetTimetableDU(cb){
     axios.request(config)
     .then((response) => {
         const dataJSON = JSON.stringify(response.data);
+        console.log(JSON.parse(dataJSON))
         cb(JSON.parse(dataJSON));
     })
     .catch((error) => {

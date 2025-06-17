@@ -27,7 +27,7 @@ const Time = () => {
     }, []);
 
     return (
-        <div className='flex flex-col justify-center items-center h-full text-5xl'>
+        <div className='flex flex-col justify-center items-center h-full text-5xl pb-6 gap-1'>
             <h1>{date}</h1>
             <h1>{time}</h1>
         </div>
