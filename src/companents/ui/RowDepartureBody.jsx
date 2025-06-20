@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { GetTimetableDU } from '../../../utils_module/GetTimetableDU.js'
 import { RowBody } from './RowBody.jsx'
 
-const RowDepartureBody = () => {
+const RowDepartureBody = ({index}) => {
     const [flightData, setFlightData] = useState([]);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const RowDepartureBody = () => {
     // console.log(data)
 
     return (
-        <RowBody flights={flightData} />
+        <RowBody flights={flightData} index={index}/>
 
     )
 }
