@@ -18,27 +18,36 @@ const RowBody = ({ flights, index }) => {
         return (flight?.time !== flight?.timedelay ? flight?.timedelay : '')
 
     }
+    const stateHall = (flight) => {
+        return `Терминал ${flight?.hall}`
+    }
 
     const content = [
-         <>
+        <>
             {flights.map((flight, index) => (
-                <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                    <span className="truncate ">{flight.time}</span>
-                    <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
-                    <span className="truncate  text-[#ffffff] text-center">{state(flight)}</span>
-                    <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
-                </li>
+                index < 6 ?
+                    <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+                        <span className="truncate ">{flight.time}</span>
+                        <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
+                        <span className="truncate  text-[#ffffff] text-center">{state(flight) || stateHall(flight)}</span>
+                        <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+                    </li>
+                    :
+                    <li></li>
             ))}
         </>
         ,
-         <>
+        <>
             {flights.map((flight, index) => (
-                <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                    <span className="truncate ">{flight.time}</span>
-                    <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
-                    <span className="truncate  text-[#ffffff] text-center">{stateTimedelay(flight)}</span>
-                    <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
-                </li>
+                index < 6 ?
+                    <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+                        <span className="truncate ">{flight.time}</span>
+                        <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
+                        <span className="truncate  text-[#ffffff] text-center">{stateTimedelay(flight)}</span>
+                        <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+                    </li>
+                    :
+                    <li></li>
             ))}
         </>
 

@@ -3,7 +3,7 @@ import { GetTimetable } from '../../../utils_module/GetTimetable.js'
 import { RowBody } from './RowBody.jsx'
 // import '../../App.css'
 
-const RowArrivalBody = ({index}) => {
+const RowArrivalBody = ({ index }) => {
     const [flightData, setFlightData] = useState([]);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const RowArrivalBody = ({index}) => {
     // console.log(data)
 
     return (
-        <RowBody flights={flightData} index={index}/>
+        <RowBody flights={flightData} index={index} />
 
     )
 }
