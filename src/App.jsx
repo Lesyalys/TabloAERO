@@ -15,13 +15,13 @@ function App() {
 
   useEffect(() => {
     const i = setInterval(() => {
-      setTimer(ind => ind === 0 ? 1 : 0)
+      setTimer(ind => (ind + 1) % 4)
     }, 9000)
     return () => clearInterval(i)
   }, [])
   return (
     <>
-      <Header />
+      <Header index={timer} />
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-row justify-between  gap-2.5">
           <RowTableHeader index={timer} />
