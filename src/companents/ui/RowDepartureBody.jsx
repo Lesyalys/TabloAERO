@@ -1,29 +1,29 @@
-import { useState, useEffect } from 'react';
-import { GetTimetableDU } from '../../../utils_module/GetTimetableDU.js'
+// import { useState, useEffect } from 'react';
+// import { GetTimetableDU } from '../../../utils_module/GetTimetableDU.js'
 import { RowBody } from './RowBody.jsx'
 
-const RowDepartureBody = ({ index }) => {
-    const [flightData, setFlightData] = useState([]);
+const RowDepartureBody = ({ index, data }) => {
+    // const [flightData, setFlightData] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        GetTimetableDU((cb) => {
-            setFlightData(cb);
-        });
+    //     GetTimetableDU((cb) => {
+    //         setFlightData(cb);
+    //     });
 
-        // const intervalId = setInterval(() => {
-        //     GetTimetableDU((cb) => {
-        //         console.log(cb);
-        //         setFlightData(cb);
-        //     });
-        // }, 60000);
+    // const intervalId = setInterval(() => {
+    //     GetTimetableDU((cb) => {
+    //         console.log(cb);
+    //         setFlightData(cb);
+    //     });
+    // }, 60000);
 
-        // return () => clearInterval(intervalId);
-    }, []);
+    // return () => clearInterval(intervalId);
+    // }, []);
     // console.log(data)
 
     return (
-        <RowBody flights={flightData} index={index} />
+        <RowBody flights={data} index={index} />
 
     )
 }

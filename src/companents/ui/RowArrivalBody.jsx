@@ -1,30 +1,28 @@
-import { useState, useEffect } from 'react';
-import { GetTimetable } from '../../../utils_module/GetTimetable.js'
 import { RowBody } from './RowBody.jsx'
-// import '../../App.css'
 
-const RowArrivalBody = ({ index }) => {
-    const [flightData, setFlightData] = useState([]);
 
-    useEffect(() => {
+const RowArrivalBody = ({ index, data }) => {
+    // const [flightData, setFlightData] = useState([]);
 
-        GetTimetable((cb) => {
-            setFlightData(cb);
-        });
+    // useEffect(() => {
 
-        // const intervalId = setInterval(() => {
-        //     GetTimetable((cb) => {
-        //         console.log(cb);
-        //         setFlightData(cb);
-        //     });
-        // }, 60000);
+    //     GetTimetable((cb) => {
+    //         setFlightData(cb);
+    //     });
 
-        // return () => clearInterval(intervalId);
-    }, []);
+    // const intervalId = setInterval(() => {
+    //     GetTimetable((cb) => {
+    //         console.log(cb);
+    //         setFlightData(cb);
+    //     });
+    // }, 60000);
+
+    // return () => clearInterval(intervalId);
+    // }, []);
     // console.log(data)
 
     return (
-        <RowBody flights={flightData} index={index} />
+        <RowBody flights={data} index={index} />
 
     )
 }
