@@ -62,7 +62,10 @@ function App() {
   }
 
   if (loading) {
-    return <div >Loading...</div>
+    return <div className='flex justify-center pt-10'>
+      <div>Loading...</div>
+      <span className='w-30 h-30 rounded-full border-4 border-violet-500 border-t-transparent animate-spin'></span>
+    </div>
   }
 
 
