@@ -1,7 +1,7 @@
 import { RowBody } from './RowBody.jsx'
 
 
-const RowArrivalBody = ({ index, data }) => {
+const RowArrivalBody = ({ data, cycel }) => {
     // const [flightData, setFlightData] = useState([]);
 
     // useEffect(() => {
@@ -22,7 +22,7 @@ const RowArrivalBody = ({ index, data }) => {
     // console.log(data)
 
     return (
-        <RowBody flights={data} index={index} />
+        <RowBody flights={data} cycel={cycel} />
 
     )
 }

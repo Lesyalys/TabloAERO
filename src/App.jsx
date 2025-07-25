@@ -10,8 +10,9 @@ import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
 
 function App() {
 
-  const [timer, setTimer] = useState(0);
+  // const [cycel, setcycel] = useState(0);
   const [correntPage, setCorrentPage] = useState(0);
+  const [cycel, setCycel] = useState(0);
 
   const [dataArr, setDataArr] = useState([]);
   const [dataDep, setDataDep] = useState([]);
@@ -45,14 +46,14 @@ function App() {
 
     const i = setInterval(() => {
       if (needsPagination) {
-        // setCorrentPage(i => (i + 1) % totalPage);
         setCorrentPage(prev => (prev + 1) % totalPage);
       }
-      setTimer(ind => (ind + 1) % 4);
-    }, needsPagination ? 8000 : 9000)
-
+      if (correntPage === totalPage - 1) {
+        setCycel(i => i === 0 ? 1 : 0)
+      }
+    }, 9000)
     return () => clearInterval(i);
-  }, [dataArr, dataDep]);
+  }, [dataArr, dataDep, correntPage]);
 
   const pagination = (data, pages) => {
     const start = pages * 6;
@@ -64,18 +65,19 @@ function App() {
     return <div >Loading...</div>
   }
 
+
   return (
 
     <div className='transition delay-300 ease-in-out'>
-      <Header index={timer} />
+      <Header cycel={cycel} />
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-row justify-between  gap-2.5">
-          <RowTableHeader index={timer} />
-          <RowTableHeader index={timer} />
+          <RowTableHeader cycel={cycel} />
+          <RowTableHeader cycel={cycel} />
         </div>
         <div className="flex flex-row justify-between gap-2.5 pt-2">
-          <RowArrivalBody index={timer} data={pagination(dataArr, correntPage)} />
-          <RowDepartureBody index={timer} data={pagination(dataDep, correntPage)} />
+          <RowArrivalBody cycel={cycel} data={pagination(dataArr, correntPage)} />
+          <RowDepartureBody cycel={cycel} data={pagination(dataDep, correntPage)} />
         </div>
       </div>
     </div>

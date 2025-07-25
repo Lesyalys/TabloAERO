@@ -2,7 +2,7 @@
 // import { GetTimetableDU } from '../../../utils_module/GetTimetableDU.js'
 import { RowBody } from './RowBody.jsx'
 
-const RowDepartureBody = ({ index, data }) => {
+const RowDepartureBody = ({ data, cycel }) => {
     // const [flightData, setFlightData] = useState([]);
 
     // useEffect(() => {
@@ -23,7 +23,7 @@ const RowDepartureBody = ({ index, data }) => {
     // console.log(data)
 
     return (
-        <RowBody flights={data} index={index} />
+        <RowBody flights={data} cycel={cycel} />
 
     )
 }

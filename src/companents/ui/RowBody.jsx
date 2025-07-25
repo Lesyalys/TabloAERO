@@ -1,8 +1,8 @@
 // import '../../App.css';
 // import { useState, useEffect } from "react";
 
-const RowBody = ({ flights = [], index }) => {
-    const isRus = index < 2 ? true : false;
+const RowBody = ({ flights = [], cycel }) => {
+    const isRus = cycel === 0 ? true : false;
     // const [contentIndex, setContentIndex] = useState(0);
 
     const renderFlightNumber = (flight) => {
@@ -22,6 +22,7 @@ const RowBody = ({ flights = [], index }) => {
     const stateHall = (flight, isRus) => {
         return isRus ? `Терминал ${flight?.hall}` : `Terminal ${flight?.hall}`
     }
+
     // const tchkbegin = (flight, isRus) => {
     //     return isRus ?
     //         (flight?.tchkbegin ? `Рег ${flight?.tchkbegin}` : '')
@@ -29,50 +30,51 @@ const RowBody = ({ flights = [], index }) => {
     // }
 
     const content = [
-        <>
-            {flights.map((flight, index) => (
-                <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                    <span className="truncate ">{flight.time}</span>
-                    <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
-                    <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
-                    <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
-                </li>
-            ))}
-        </>
-        ,
-        <>
-            {flights.map((flight, index) => (
-                <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                    <span className="truncate ">{flight.time}</span>
-                    <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
-                    <span className="truncate  text-[#ffffff] text-center">{stateTimedelay(flight)}</span>
-                    <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
-                </li>
-            ))}
-        </>
-        ,
-        <>
-            {flights.map((flight, index) => (
-                <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                    <span className="truncate ">{flight.time}</span>
-                    <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[1]}</span>
-                    <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
-                    <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
-                </li>
-            ))}
-        </>
-        ,
-        <>
-            {flights.map((flight, index) => (
-                <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                    <span className="truncate ">{flight.time}</span>
-                    <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[1]}</span>
-                    <span className="truncate  text-[#ffffff] text-center">{stateTimedelay(flight)}</span>
-                    <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
-                </li>
+        cycel === 0 ?
+            <>
+                {flights.map((flight, index) => (
+                    <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+                        <span className="truncate ">{flight.time}</span>
+                        <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
+                        <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
+                        <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+                    </li>
+                ))}
+            </>
+            :
+            <>
+                {flights.map((flight, index) => (
+                    <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+                        <span className="truncate ">{flight.time}</span>
+                        <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[1]}</span>
+                        <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
+                        <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+                    </li>
+                ))}
+            </>
+        // ,
+        // <>
+        //     {flights.map((flight, index) => (
+        //         <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+        //             <span className="truncate ">{flight.time}</span>
+        //             <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[1]}</span>
+        //             <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
+        //             <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+        //         </li>
+        //     ))}
+        // </>
+        // ,
+        // <>
+        //     {flights.map((flight, index) => (
+        //         <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+        //             <span className="truncate ">{flight.time}</span>
+        //             <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[1]}</span>
+        //             <span className="truncate  text-[#ffffff] text-center">{stateTimedelay(flight)}</span>
+        //             <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+        //         </li>
 
-            ))}
-        </>
+        //     ))}
+        // </>
 
 
     ]
@@ -89,7 +91,15 @@ const RowBody = ({ flights = [], index }) => {
     return (
         <div className="w-1/2 mt-2.5">
             <ul className="uppercase last:mb-0 ">
-                {content[index]}
+                {/* {flights.map((flight, index) => (
+                    <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
+                        <span className="truncate ">{flight.time}</span>
+                        <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
+                        <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
+                        <span className="truncate  text-[#e7d31d] text-right">{renderFlightNumber(flight)}</span>
+                    </li>
+                ))} */}
+                {content[0]}
             </ul>
 
         </div>
