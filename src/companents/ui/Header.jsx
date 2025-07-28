@@ -40,12 +40,20 @@ const Header = ({ cycel }) => {
         </h1>
     ]
     return (
-        <div
-            className='grid grid-cols-3 mt-3 gap-20 uppercase text-4xl'>
-            {dataArr[0]}
-            <Time />
-            {dataDep[0]}
-        </div>
+        <>
+            <span className='grid grid-cols-3 mt-3 gap-20 uppercase items-center'>
+                {dataArr[0]}
+                <span className='flex justify-center'>
+                    <img src='aero.png' className='h-[90px]' />
+                </span>
+                {dataDep[0]}
+            </span>
+            <div
+                // className='grid grid-cols-3 mt-3 gap-20'>
+                className='flex justify-center'>
+                <Time />
+            </div>
+        </>
     )
 }
 

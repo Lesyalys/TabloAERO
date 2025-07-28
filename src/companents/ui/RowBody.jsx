@@ -15,10 +15,10 @@ const RowBody = ({ flights = [], cycel }) => {
             ? (flight?.landed == "ПРИ" ? "Прибыл" : (flight?.tookoff == "ВЫЛ" ? 'Вылетел' : ''))
             : (flight?.landed == "ПРИ" ? "arrived" : (flight?.tookoff == "ВЫЛ" ? 'departure' : ''))
     }
-    const stateTimedelay = (flight) => {
-        return (flight?.time !== flight?.timedelay ? flight?.timedelay : '')
+    // const stateTimedelay = (flight) => {
+    //     return (flight?.time !== flight?.timedelay ? flight?.timedelay : '')
 
-    }
+    // }
     const stateHall = (flight, isRus) => {
         return isRus ? `Терминал ${flight?.hall}` : `Terminal ${flight?.hall}`
     }
