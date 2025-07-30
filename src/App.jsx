@@ -1,12 +1,18 @@
 import './App.css';
 // import { FixedSizeList as List} from 'react-window';
 import { useState, useEffect, useCallback } from 'react';
+import { GetTimetable } from '../utils_module/GetTimetable.js'
+import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
+import { getTemp } from "../utils_module/GetTemp";
+import { getInfoVoice } from '../utils_module/GetInfoVoice.js';
+
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowArrivalBody } from './companents/ui/RowArrivalBody';
 import { RowDepartureBody } from './companents/ui/RowDepartureBody.jsx';
-import { GetTimetable } from '../utils_module/GetTimetable.js'
-import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
+import { Temp } from './companents/ui/Temp.jsx';
+import { InfoVoice } from './companents/ui/InfoTable.jsx';
+
 
 function App() {
 
@@ -17,6 +23,8 @@ function App() {
   const [dataArr, setDataArr] = useState([]);
   const [dataDep, setDataDep] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [temp, setTemp] = useState(0);
+  const [voiceInfo, setvoiceInfo] = useState('');
 
   const featchData = useCallback(() => {
     setLoading(true)
@@ -31,13 +39,37 @@ function App() {
     });
   }, [])
 
+  const updateTemp = useCallback(async () => {
+    try {
+      getTemp().then(t => setTemp(t)).catch(console.error);
+    } catch {
+      console.error();
+    }
+  }, []);
+
+  const updateVoice = useCallback(() => {
+    try {
+      getInfoVoice().then(v => setvoiceInfo(v)).catch(console.error);
+    } catch {
+      console.error();
+    }
+  }, [])
+
   useEffect(() => {
     featchData();
-    const refresh = setInterval(featchData, 60000);
-    return () => clearInterval(refresh);
+    updateTemp();
+    updateVoice();
 
-  }, [featchData]);
+    // const dataInterval = setInterval(featchData, 60000);
+    const tempInterval = setInterval(updateTemp, 60000);
+    const updateVoiceInterval = setInterval(updateVoice, 60000);
 
+    return () => {
+      // clearInterval(dataInterval);
+      clearInterval(tempInterval);
+      clearInterval(updateVoiceInterval);
+    };
+  }, []);
   useEffect(() => {
     const needsPagination = dataArr.length > 6 || dataDep.length > 6;
     const maxArrPags = Math.ceil(dataArr.length / 6);
@@ -61,18 +93,22 @@ function App() {
     return data.slice(start, end);
   }
 
+
+
   if (loading) {
-    return <div className='flex justify-center pt-10'>
-      <div>Loading...</div>
-      <span className='w-30 h-30 rounded-full border-4 border-violet-500 border-t-transparent animate-spin'></span>
+    return <div className='flex justify-center pt-10 flex-col items-center'>
+      <div className='pb-10 uppercase'>Loading...</div>
+      <span className='w-30 h-30 rounded-full border-3 border-blue-300 border-t-transparent animate-spin'>✈</span>
     </div>
   }
 
 
   return (
 
-    <div className='transition delay-300 ease-in-out'>
+    <div>
       <Header cycel={cycel} />
+      <Temp temp={temp} cycel={cycel} />
+      <InfoVoice voiceInfo={voiceInfo} />
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-row justify-between  gap-2.5">
           <RowTableHeader cycel={cycel} />
