@@ -4,14 +4,14 @@ import { useState, useEffect, useCallback } from 'react';
 import { GetTimetable } from '../utils_module/GetTimetable.js'
 import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
 import { getTemp } from "../utils_module/GetTemp";
-import { getInfoVoice } from '../utils_module/GetInfoVoice.js';
+// import { getInfoVoice } from '../utils_module/GetInfoVoice.js';
 
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowArrivalBody } from './companents/ui/RowArrivalBody';
 import { RowDepartureBody } from './companents/ui/RowDepartureBody.jsx';
 import { Temp } from './companents/ui/Temp.jsx';
-import { InfoVoice } from './companents/ui/InfoTable.jsx';
+// import { InfoVoice } from './companents/ui/InfoTable.jsx';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
   const [dataDep, setDataDep] = useState([]);
   const [loading, setLoading] = useState(true);
   const [temp, setTemp] = useState(0);
-  const [voiceInfo, setvoiceInfo] = useState('');
+  // const [voiceInfo, setvoiceInfo] = useState('');
 
   const featchData = useCallback(() => {
     setLoading(true)
@@ -47,27 +47,27 @@ function App() {
     }
   }, []);
 
-  const updateVoice = useCallback(() => {
-    try {
-      getInfoVoice().then(v => setvoiceInfo(v)).catch(console.error);
-    } catch {
-      console.error();
-    }
-  }, [])
+  // const updateVoice = useCallback(() => {
+  //   try {
+  //     getInfoVoice().then(v => setvoiceInfo(v)).catch(console.error);
+  //   } catch {
+  //     console.error();
+  //   }
+  // }, [])
 
   useEffect(() => {
     featchData();
     updateTemp();
-    updateVoice();
+    // updateVoice();
 
     // const dataInterval = setInterval(featchData, 60000);
     const tempInterval = setInterval(updateTemp, 60000);
-    const updateVoiceInterval = setInterval(updateVoice, 60000);
+    // const updateVoiceInterval = setInterval(updateVoice, 60000);
 
     return () => {
       // clearInterval(dataInterval);
       clearInterval(tempInterval);
-      clearInterval(updateVoiceInterval);
+      // clearInterval(updateVoiceInterval);
     };
   }, []);
   useEffect(() => {
@@ -106,9 +106,9 @@ function App() {
   return (
 
     <div>
-      <Header cycel={cycel} />
       <Temp temp={temp} cycel={cycel} />
-      <InfoVoice voiceInfo={voiceInfo} />
+      <Header cycel={cycel} />
+      {/* <InfoVoice voiceInfo={voiceInfo} /> */}
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-row justify-between  gap-2.5">
           <RowTableHeader cycel={cycel} />
