@@ -74,7 +74,7 @@ function App() {
 
   return (
 
-    <div>
+    <div className='font-mono'>
       <Header cycel={cycel} />
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-row justify-between  gap-2.5">
