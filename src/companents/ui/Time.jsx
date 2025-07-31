@@ -38,7 +38,7 @@ const Time = () => {
                 <span className='flex justify-center'>
                     <img src='./src/assets/aero.png' className='h-[90px] mt-3.5 mb-3.5' />
                 </span>
-                <h1>{time}</h1>
+                <h1 className='mb-5 font-bold'>{time}</h1>
             </div>
 
         </>

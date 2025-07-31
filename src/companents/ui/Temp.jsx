@@ -7,7 +7,8 @@ const Temp = ({ temp, cycel }) => {
         :
         <img src="https://cdn-0.emojis.wiki/emoji-pics-lf/telegram/snowflake-telegram.gif" className="h-10 w-10" />
 
-    const lenCity = cycel === 0 ? <span>Нижневартовск <span className="text-yellow-300">{temp} °C</span></span> : <span>Nizhnevartovsk {temp} °C</span>
+    const colorTemp = temp > 0 ? <span className="text-yellow-300">{temp} °C</span> : <span className="text-blue-300">{temp} °C</span>
+    const lenCity = cycel === 0 ? <span>Нижневартовск {colorTemp}</span> : <span>Nizhnevartovsk  {colorTemp}</span>
 
     return (
         <div className="flex items-center pt-2">

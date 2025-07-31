@@ -3,14 +3,14 @@ import './App.css';
 import { useState, useEffect, useCallback } from 'react';
 import { GetTimetable } from '../utils_module/GetTimetable.js'
 import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
-import { getTemp } from "../utils_module/GetTemp";
+// import { getTemp } from "../utils_module/GetTemp";
 // import { getInfoVoice } from '../utils_module/GetInfoVoice.js';
 
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowArrivalBody } from './companents/ui/RowArrivalBody';
 import { RowDepartureBody } from './companents/ui/RowDepartureBody.jsx';
-import { Temp } from './companents/ui/Temp.jsx';
+// import { Temp } from './companents/ui/Temp.jsx';
 // import { InfoVoice } from './companents/ui/InfoTable.jsx';
 
 
@@ -23,7 +23,7 @@ function App() {
   const [dataArr, setDataArr] = useState([]);
   const [dataDep, setDataDep] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [temp, setTemp] = useState(0);
+  // const [temp, setTemp] = useState(0);
   // const [voiceInfo, setvoiceInfo] = useState('');
 
   const featchData = useCallback(() => {
@@ -39,13 +39,13 @@ function App() {
     });
   }, [])
 
-  const updateTemp = useCallback(async () => {
-    try {
-      getTemp().then(t => setTemp(t)).catch(console.error);
-    } catch {
-      console.error();
-    }
-  }, []);
+  // const updateTemp = useCallback(async () => {
+  //   try {
+  //     getTemp().then(t => setTemp(t)).catch(console.error);
+  //   } catch {
+  //     console.error();
+  //   }
+  // }, []);
 
   // const updateVoice = useCallback(() => {
   //   try {
@@ -57,16 +57,16 @@ function App() {
 
   useEffect(() => {
     featchData();
-    updateTemp();
+    // updateTemp();
     // updateVoice();
 
     // const dataInterval = setInterval(featchData, 60000);
-    const tempInterval = setInterval(updateTemp, 60000);
+    // const tempInterval = setInterval(updateTemp, 60000);
     // const updateVoiceInterval = setInterval(updateVoice, 60000);
 
     return () => {
       // clearInterval(dataInterval);
-      clearInterval(tempInterval);
+      // clearInterval(tempInterval);
       // clearInterval(updateVoiceInterval);
     };
   }, []);
@@ -106,7 +106,7 @@ function App() {
   return (
 
     <div>
-      <Temp temp={temp} cycel={cycel} />
+      {/* <Temp temp={temp} cycel={cycel} /> */}
       <Header cycel={cycel} />
       {/* <InfoVoice voiceInfo={voiceInfo} /> */}
       <div className="flex flex-col gap-2.5">
