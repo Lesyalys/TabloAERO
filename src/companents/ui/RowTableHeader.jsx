@@ -1,61 +1,19 @@
-// import { useState, useEffect } from "react"
-
 const RowTableHeader = ({ cycel }) => {
-
-    // const [headcycel, setHeadcycel] = useState(0);
-
-    const data = [
-        cycel === 0 ?
-            <>
-                <ul className="grid grid-cols-4 mt-3 w-1/2">
-                    <li className="flex items-center justify-start">Время</li>
-                    <li className="flex items-start justify-start">Направление</li>
-                    <li className="flex items-center justify-center">Информация</li>
-                    <li className="flex items-center justify-end">Рейс</li>
-                </ul>
-                <hr />
-            </>
-            :
-            <>
-                <ul className="grid grid-cols-4 mt-3  w-1/2">
-                    <li className="flex items-center justify-start">Time</li>
-                    <li className="flex items-start justify-start">Direction</li>
-                    <li className="flex items-center justify-center">Information</li>
-                    <li className="flex items-center justify-end">Flight</li>
-                </ul>
-                <hr />
-            </>
-        // ,
-        // <>
-        //     <ul className="grid grid-cols-4 mt-3 gap-20 border-2 border-[#282828] p-2.5 w-1/2">
-        //         <li className="flex items-center justify-start">Time</li>
-        //         <li className="flex items-center justify-center">Direction</li>
-        //         <li className="flex items-center justify-center">Information</li>
-        //         <li className="flex items-center justify-end">Flight</li>
-        //     </ul>
-        // </>
-        // , <>
-        //     <ul className="grid grid-cols-4 mt-3 gap-20 border-2 border-[#282828] p-2.5 w-1/2">
-        //         <li className="flex items-center justify-start">Time</li>
-        //         <li className="flex items-center justify-center">Direction</li>
-        //         <li className="flex items-center justify-center">Expected</li>
-        //         <li className="flex items-center justify-end">Flight</li>
-        //     </ul>
-        // </>
-
-    ]
-
-    // useEffect(()=>{
-    //     const setValidId = setInterval(() => {
-    //     setHeadcycel(id => id === 0 ? 1 : 0)
-    // },9000)
-
-    // return () =>  clearInterval(setValidId)
-    // }, [])
+    const data = (
+        <>
+            <ul className="grid grid-cols-4 mt-3 w-1/2">
+                <li className="flex items-center justify-start">{cycel === 0 ? "Время" : "Time"}</li>
+                <li className="flex items-start justify-start">{cycel === 0 ? "Направление" : "Direction"}</li>
+                <li className="flex items-center justify-center">{cycel === 0 ? "Информация" : "Information"}</li>
+                <li className="flex items-center justify-end">{cycel === 0 ? "Рейс" : "Flight"}</li>
+            </ul>
+            <hr />
+        </>
+    )
 
     return (
         <>
-            {data[0]}
+            {data}
         </>
 
     )

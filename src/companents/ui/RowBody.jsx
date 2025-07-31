@@ -1,9 +1,5 @@
-// import '../../App.css';
-// import { useState, useEffect } from "react";
-
 const RowBody = ({ flights = [], cycel }) => {
     const isRus = cycel === 0 ? true : false;
-    // const [contentIndex, setContentIndex] = useState(0);
 
     const renderFlightNumber = (flight) => {
         if (!flight?.company || !flight?.flight) return 'N/A';
