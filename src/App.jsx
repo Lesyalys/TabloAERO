@@ -66,7 +66,7 @@ function App() {
 
   if (loading) {
     return <div className='flex justify-center pt-10 flex-col items-center'>
-      <div className='pb-10 uppercase'>Loading...</div>
+      <div className='pb-10 uppercase font-mono'>Loading...</div>
       <span className='w-30 h-30 rounded-full border-3 border-blue-300 border-t-transparent animate-spin'>✈</span>
     </div>
   }

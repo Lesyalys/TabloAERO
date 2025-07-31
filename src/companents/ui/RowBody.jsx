@@ -26,14 +26,14 @@ const RowBody = ({ data, cycel }) => {
     // }
 
     return (
-        <div className="w-1/2 mt-2.5">
+        <div className="w-1/2 mt-2.5 mr-10 last:mr-0 text-3xl">
             <ul className="uppercase last:mb-0 ">
                 {data.map((flight, index) => (
                     <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
                         <span className="truncate ">{flight.time}</span>
                         <span className="truncate  text-[#00b7ff] text-left">{cycel == 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
                         <span className="truncate  text-[#ffffff] text-center">{state(flight, isRus) || stateHall(flight, isRus)}</span>
-                        <span className="truncate  text-[#FFCC32] text-right font-sans font-bold">{renderFlightNumber(flight)}</span>
+                        <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
                     </li>
                 ))}
             </ul>

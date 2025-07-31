@@ -12,6 +12,7 @@ const Header = ({ cycel }) => {
     const updateVoice = useCallback(() => {
         try {
             getInfoVoice().then(v => setvoiceInfo(v)).catch(console.error);
+
         } catch {
             console.error();
         }

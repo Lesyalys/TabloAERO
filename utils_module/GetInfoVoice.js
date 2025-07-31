@@ -9,8 +9,7 @@ export async function getInfoVoice() {
 
     try {
         const res = await axios(config);
-        const resj = res.data[0].MessageTextRU;
-        // console.log(res.data[0].MessageTextRU);
+        const resj = res.data
         return (resj);
     } catch {
         console.error();

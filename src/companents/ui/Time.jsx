@@ -10,10 +10,10 @@ const Time = () => {
             const current = new Date();
             const currentDate = current.getDate();
 
-
+            setDate(current.toLocaleDateString().replace(/\./g, '/'));
             if (currentDate !== lastDateRef.current) {
                 lastDateRef.current = currentDate;
-                setDate(current.toLocaleDateString());
+                setDate(current.toLocaleDateString().replace(/\./g, '/'));
             }
 
             setTime(current.toLocaleTimeString());
@@ -33,12 +33,12 @@ const Time = () => {
             {/* <span className='flex justify-center'>
                     <img src='./src/assets/aero.png' className='h-[90px]' />
                 </span> */}
-            <div className='flex flex-col justify-center items-center h-full text-5xl gap-1'>
-                <h1>{date}</h1>
+            <div className='flex flex-col justify-center items-center h-full gap-1 '>
+                <h1 className='font-sans text-4xl'>{date}</h1>
                 <span className='flex justify-center'>
                     <img src='./src/assets/aero.png' className='h-[90px] mt-3.5 mb-3.5' />
                 </span>
-                <h1 className='mb-5 font-bold'>{time}</h1>
+                <h1 className='mb-5 font-bold text-6xl'>{time}</h1>
             </div>
 
         </>
