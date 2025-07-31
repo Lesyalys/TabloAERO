@@ -1,4 +1,4 @@
-const RowBody = ({ flights = [], cycel }) => {
+const RowBody = ({ data, cycel }) => {
     const isRus = cycel === 0 ? true : false;
 
     const renderFlightNumber = (flight) => {
@@ -29,7 +29,7 @@ const RowBody = ({ flights = [], cycel }) => {
         cycel === 0 ?
 
             <>
-                {flights.map((flight, index) => (
+                {data.map((flight, index) => (
                     <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
                         <span className="truncate ">{flight.time}</span>
                         <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[0]}</span>
@@ -40,7 +40,7 @@ const RowBody = ({ flights = [], cycel }) => {
             </>
             :
             <>
-                {flights.map((flight, index) => (
+                {data.map((flight, index) => (
                     <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
                         <span className="truncate ">{flight.time}</span>
                         <span className="truncate  text-[#00b7ff] text-left">{flight?.dest?.split('%')[1]}</span>

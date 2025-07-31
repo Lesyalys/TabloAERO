@@ -2,8 +2,7 @@ import './App.css';
 import { useState, useEffect, useCallback } from 'react';
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
-import { RowArrivalBody } from './companents/ui/RowArrivalBody';
-import { RowDepartureBody } from './companents/ui/RowDepartureBody.jsx';
+import { RowBody } from './companents/ui/RowBody.jsx';
 
 import { GetTimetable } from '../utils_module/GetTimetable.js'
 import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
@@ -83,8 +82,8 @@ function App() {
           <RowTableHeader cycel={cycel} />
         </div>
         <div className="flex flex-row justify-between gap-2.5 pt-2">
-          <RowArrivalBody cycel={cycel} data={pagination(dataArr, correntPage)} />
-          <RowDepartureBody cycel={cycel} data={pagination(dataDep, correntPage)} />
+          <RowBody cycel={cycel} data={pagination(dataArr, correntPage)} />
+          <RowBody cycel={cycel} data={pagination(dataDep, correntPage)} />
         </div>
       </div>
     </div>

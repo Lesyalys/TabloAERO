@@ -9,12 +9,10 @@ const Temp = ({ temp, cycel }) => {
 
     const colorTemp = (<span className={`${temp > 0 ? "text-yellow-300" : "text-blue-300"} font-bold`}>{temp} °C</span>)
 
-    const lenCity = (<span>{cycel === 0 ? 'Нижневартовск' : 'Nizhnevartovsk'} {colorTemp}</span>)
-
     return (
         <div className="flex items-center pt-2">
             <>{imgTemp}</>
-            <>{lenCity}</>
+            <span>{cycel === 0 ? 'Нижневартовск' : 'Nizhnevartovsk'} {colorTemp}</span>
         </div>
     );
 }
