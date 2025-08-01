@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowBody } from './companents/ui/RowBody.jsx';
+import { motion } from 'framer-motion';
 
 import { GetTimetable } from '../utils_module/GetTimetable.js'
 import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
@@ -52,7 +53,7 @@ function App() {
       if (correntPage === totalPage - 1) {
         setCycel(i => i === 0 ? 1 : 0)
       }
-    }, 9000)
+    }, 15000)
     return () => clearInterval(i);
   }, [dataArr, dataDep, correntPage]);
 
@@ -81,6 +82,7 @@ function App() {
           <RowTableHeader cycel={cycel} />
           <RowTableHeader cycel={cycel} />
         </div>
+
         <div className="flex flex-row justify-between gap-2.5 pt-2">
           <RowBody cycel={cycel} data={pagination(dataArr, correntPage)} />
           <RowBody cycel={cycel} data={pagination(dataDep, correntPage)} />
@@ -93,3 +95,13 @@ function App() {
 }
 
 export default App;
+
+// <motion.div
+//                 key={time}
+//                 initial={{ opacity: 0 }}
+//                 animate={{ opacity: 1 }}
+//                 exit={{ opacity: 0 }}
+//                 transition={{ duration: 0.5 }}
+//                 className='mb-5 font-bold text-6xl'
+//             >{time}
+//             </motion.div>

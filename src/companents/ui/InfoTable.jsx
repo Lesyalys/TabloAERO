@@ -8,20 +8,31 @@ const InfoVoice = ({ voiceInfo }) => {
         if (voiceInfo.length > 1) return;
         const timer = setInterval(() => {
             setCorrentIndex(prev => (prev + 1) % voiceInfo.length)
-        }, 60000);
+        }, 6000);
         return clearInterval(timer)
     }, [])
 
     if (!voiceInfo || voiceInfo.length === 0) {
-        return (<span>Окно голосовых сообщений</span>)
+        return (
+            <div className="flex flex-row overflow-clip bg-secondary/30 border border-[#2c313a] border-border rounded p-4 bg-[#21252b4d] " >
+                <div className="flex w-max gap-4 text-3xl ">
+                    {/* <span className="inline-block rotate-180">✈</span> */}
+                    <span>
+                        Окно голосовых сообщений
+                    </span>
+                </div>
+
+            </div>
+        )
     }
 
-    const currentMessage = voiceInfo[correntIndex].MessageTextRU
+    console.log(voiceInfo)
+    const currentMessage = voiceInfo[correntIndex]?.MessageTextRU
 
     return (
-        <div className="flex flex-row overflow-clip bg-secondary/30 border border-[#2c313a] border-border rounded p-4 bg-[#21252b4d]" >
+        <div className="flex flex-row overflow-clip bg-secondary/30 border border-[#2c313a] border-border rounded p-4 bg-[#21252b4d] " >
             <marquee className="flex w-max animate-marquee-move gap-4 text-3xl ">
-                <span className="inline-block rotate-180">✈</span>
+                {/* <span className="inline-block rotate-180">✈</span> */}
                 <span>
                     {currentMessage}
                 </span>
