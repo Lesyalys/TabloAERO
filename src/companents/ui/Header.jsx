@@ -5,6 +5,7 @@ import { InfoVoice } from './InfoTable.jsx';
 import { ArrDepHeader } from './ArrDepHeader.jsx';
 import { getInfoVoice } from '../../../API/GetInfoVoice.js';
 import { getTemp } from "../../../API/GetTemp.js";
+// import { motion } from 'framer-motion';
 
 const Header = ({ cycel }) => {
     const [voiceInfo, setvoiceInfo] = useState('');

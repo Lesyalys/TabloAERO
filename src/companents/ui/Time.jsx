@@ -41,6 +41,7 @@ const Time = () => {
                 <h1 key={time} className='mb-5 font-bold text-6xl ' >{time}</h1>
             </div>
 
+
         </>
     );
 };

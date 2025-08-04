@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowBody } from './companents/ui/RowBody.jsx';
-// import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { GetTimetable } from '../API/GetTimetable.js'
 import { GetTimetableDU } from '../API/GetTimetableDU.js'
@@ -12,38 +12,42 @@ import { GetTimetableDU } from '../API/GetTimetableDU.js'
 function App() {
   const [correntPage, setCorrentPage] = useState(0);
   const [cycel, setCycel] = useState(0);
-
-  const [dataArr, setDataArr] = useState([]);
-  const [dataDep, setDataDep] = useState([]);
+  const [data, setData] = useState({ arr: [], dep: [] });
   const [loading, setLoading] = useState(true);
 
-  const featchData = useCallback(() => {
-    setLoading(true)
+  const featchData = async () => {
+    try {
+      const [arr, dep] = await Promise.all([
+        new Promise(res => GetTimetable(res)),
+        new Promise(res => GetTimetableDU(res))
+      ]);
 
-    Promise.all([
-      new Promise(res => GetTimetable(res)),
-      new Promise(res => GetTimetableDU(res))
-    ]).then(([dataArr, dataDep]) => {
-      setDataArr(dataArr);
-      setDataDep(dataDep);
-      setLoading(false);
-    });
-  }, [])
+      // Плавное обновление без сброса состояния
+      setData(prev => ({
+        ...prev,
+        arr: JSON.stringify(prev.arr) === JSON.stringify(arr) ? prev.arr : arr,
+        dep: JSON.stringify(prev.dep) === JSON.stringify(dep) ? prev.dep : dep
+      }));
+
+    } catch (error) {
+      console.error('Ошибка загрузки:', error);
+    } finally {
+      if (loading) setLoading(false);
+    }
+  };
 
   useEffect(() => {
     featchData();
-
-    // const dataInterval = setInterval(featchData, 60000);
-
+    const dataInterval = setInterval(featchData, 60000);
     return () => {
-      // clearInterval(dataInterval);
+      clearInterval(dataInterval);
     };
   }, []);
 
   useEffect(() => {
-    const needsPagination = dataArr.length > 6 || dataDep.length > 6;
-    const maxArrPags = Math.ceil(dataArr.length / 6);
-    const maxDepPags = Math.ceil(dataDep.length / 6);
+    const needsPagination = data.arr.length > 6 || data.dep.length > 6;
+    const maxArrPags = Math.ceil(data.arr.length / 6);
+    const maxDepPags = Math.ceil(data.dep.length / 6);
     const totalPage = Math.max(maxArrPags, maxDepPags, 1);
 
     const i = setInterval(() => {
@@ -51,11 +55,12 @@ function App() {
         setCorrentPage(prev => (prev + 1) % totalPage);
       }
       if (correntPage === totalPage - 1) {
+        // const [cycel, setCycel] = useState(0);
         setCycel(i => i === 0 ? 1 : 0)
       }
-    }, 15000)
+    }, 20000)
     return () => clearInterval(i);
-  }, [dataArr, dataDep, correntPage]);
+  }, [data.arr, data.dep, correntPage]);
 
   const pagination = (data, pages) => {
     const start = pages * 6;
@@ -74,34 +79,43 @@ function App() {
 
 
   return (
+    <AnimatePresence mode='wait'>
 
-    <div className='font-mono'>
-      <Header cycel={cycel} />
-      <div className="flex flex-col gap-2.5">
-        <div className="flex flex-row justify-between  gap-2.5">
-          <RowTableHeader cycel={cycel} />
-          <RowTableHeader cycel={cycel} />
-        </div>
+      <div
+        className='font-mono'>
+        <Header cycel={cycel} />
+        <motion.div
+          key={`${cycel}-${correntPage}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col gap-2.5">
+          <div className="flex flex-row justify-between  gap-2.5">
+            <RowTableHeader cycel={cycel} />
+            <RowTableHeader cycel={cycel} />
+          </div>
 
-        <div className="flex flex-row justify-between gap-2.5 pt-2">
-          <RowBody cycel={cycel} data={pagination(dataArr, correntPage)} />
-          <RowBody cycel={cycel} data={pagination(dataDep, correntPage)} />
-        </div>
+          <div className="flex flex-row justify-between gap-2.5 pt-2">
+            <RowBody cycel={cycel} data={pagination(data.arr, correntPage)} />
+            <RowBody cycel={cycel} data={pagination(data.dep, correntPage)} />
+          </div>
+        </motion.div>
       </div>
-    </div>
 
+    </AnimatePresence>
 
   );
 }
 
 export default App;
 
-// <motion.div
-//                 key={time}
-//                 initial={{ opacity: 0 }}
-//                 animate={{ opacity: 1 }}
-//                 exit={{ opacity: 0 }}
-//                 transition={{ duration: 0.5 }}
-//                 className='mb-5 font-bold text-6xl'
-//             >{time}
-//             </motion.div>
+{/* <motion.div
+                key={time}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className='mb-5 font-bold text-6xl'
+            >{time}
+            </motion.div> */}

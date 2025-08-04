@@ -11,11 +11,12 @@ const RowBody = ({ data, cycel }) => {
         return `${flight.company} ${flight.flight}`;
     };
 
-    // const getInitialInfo = (flight, isRus) => {
-    //     return isRus
-    //         ? (flight?.landed === "ПРИ" ? "Прибыл" : (flight?.tookoff === "ВЫЛ" ? 'Вылетел' : ''))
-    //         : (flight?.landed === "ПРИ" ? "arrived" : (flight?.tookoff === "ВЫЛ" ? 'departure' : ''))
-    // }
+    const getInitialInfo = (flight, isRus) => {
+        return isRus
+            ? (flight?.landed === "ПРИ" ? "Прибыл" : (flight?.tookoff === "ВЫЛ" ? 'Вылетел' : ''))
+            : (flight?.landed === "ПРИ" ? "arrived" : (flight?.tookoff === "ВЫЛ" ? 'departure' : ''))
+    }
+
     const stateTimedelay = (flight, isRus) => {
         return (
             flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
@@ -53,9 +54,9 @@ const RowBody = ({ data, cycel }) => {
             newTimers[index] = setTimeout(() => {
                 setInfoMap(prev => ({
                     ...prev,
-                    [index]: getDelayedInfo(flight, isRus) || stateTimedelay(flight, isRus)
+                    [index]: getDelayedInfo(flight, isRus) || stateTimedelay(flight, isRus) || getInitialInfo(flight, isRus)
                 }))
-            }, 8000);
+            }, 10000);
         })
         setInfoMap(newInfoMap)
         setTimers(prev => {
@@ -70,7 +71,8 @@ const RowBody = ({ data, cycel }) => {
     }, [data, isRus])
 
     return (
-        <div className="w-1/2 mt-2.5 mr-10 last:mr-0 text-3xl">
+        <div
+            className="w-1/2 mt-2.5 mr-10 last:mr-0 text-3xl">
             <ul className="uppercase last:mb-0 ">
                 {data.map((flight, index) => (
                     <li key={index}
@@ -84,6 +86,18 @@ const RowBody = ({ data, cycel }) => {
             </ul>
 
         </div>
+
+        // <motion.div
+        // className="w-1/2 mt-2.5 mr-10 last:mr-0 text-3xl"}
+        // >
+        //    <span className="truncate ">{flight.time}</span>
+        //     <span className="truncate  text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
+        //     <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
+        //     <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
+
+        // </motion.div>
+
+
     )
 };
 
