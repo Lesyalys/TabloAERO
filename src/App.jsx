@@ -5,8 +5,8 @@ import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowBody } from './companents/ui/RowBody.jsx';
 // import { motion } from 'framer-motion';
 
-import { GetTimetable } from '../utils_module/GetTimetable.js'
-import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
+import { GetTimetable } from '../API/GetTimetable.js'
+import { GetTimetableDU } from '../API/GetTimetableDU.js'
 
 
 function App() {

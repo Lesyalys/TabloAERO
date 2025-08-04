@@ -3,8 +3,8 @@ import { Time } from './Time.jsx';
 import { Temp } from './Temp.jsx';
 import { InfoVoice } from './InfoTable.jsx';
 import { ArrDepHeader } from './ArrDepHeader.jsx';
-import { getInfoVoice } from '../../../utils_module/GetInfoVoice.js';
-import { getTemp } from "../../../utils_module/GetTemp.js";
+import { getInfoVoice } from '../../../API/GetInfoVoice.js';
+import { getTemp } from "../../../API/GetTemp.js";
 
 const Header = ({ cycel }) => {
     const [voiceInfo, setvoiceInfo] = useState('');
@@ -43,7 +43,7 @@ const Header = ({ cycel }) => {
                 <div className='p-2'>
                     <Temp temp={temp} cycel={cycel} />
                     <Time />
-                    <InfoVoice voiceInfo={voiceInfo} />
+                    <InfoVoice voiceInfo={voiceInfo} cycel={cycel} />
                 </div>
                 <ArrDepHeader cycel={cycel} />
             </div>

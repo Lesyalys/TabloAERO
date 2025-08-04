@@ -1,5 +1,5 @@
 // import { useState, useEffect } from "react";
-// import { getTemp } from "../../../utils_module/GetTemp";
+// import { getTemp } from "../../../API/GetTemp";
 
 const Temp = ({ temp, cycel }) => {
     const imgTemp = temp >= 0 ?
