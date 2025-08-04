@@ -2,7 +2,7 @@
 // import { getTemp } from "../../../utils_module/GetTemp";
 
 const Temp = ({ temp, cycel }) => {
-    const imgTemp = temp >= 15 ?
+    const imgTemp = temp >= 0 ?
         <svg xmlns="http://www.w3.org/2000/svg" color="#ffdf20" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="2" strokeLinecap="round"
             className=" w-10 h-10 mr-6" ><circle cx="12" cy="12" r="4"></circle>

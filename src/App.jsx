@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowBody } from './companents/ui/RowBody.jsx';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 import { GetTimetable } from '../utils_module/GetTimetable.js'
 import { GetTimetableDU } from '../utils_module/GetTimetableDU.js'
