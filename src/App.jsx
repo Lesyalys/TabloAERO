@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from './companents/ui/Header';
 import { RowTableHeader } from './companents/ui/RowTableHeader';
 import { RowBody } from './companents/ui/RowBody.jsx';
@@ -22,7 +22,7 @@ function App() {
         new Promise(res => GetTimetableDU(res))
       ]);
 
-      // Плавное обновление без сброса состояния
+      console.log("im relowd later 60 seck")
       setData(prev => ({
         ...prev,
         arr: JSON.stringify(prev.arr) === JSON.stringify(arr) ? prev.arr : arr,

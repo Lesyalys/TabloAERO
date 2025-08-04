@@ -31,11 +31,9 @@ const RowBody = ({ data, cycel }) => {
         return isRus ? `Терминал ${flight?.hall}` : `Terminal ${flight?.hall}`
     }
     //причина обстоятельств если есть
-    // const codedelay = (flight, isRus) => {
+    // const codedelay = (flight) => {
     //     return (
-    //         isRus ?
     //             flight?.codedelay ===
-    //         :
 
     //     )
     // }
@@ -54,9 +52,15 @@ const RowBody = ({ data, cycel }) => {
             newTimers[index] = setTimeout(() => {
                 setInfoMap(prev => ({
                     ...prev,
-                    [index]: getDelayedInfo(flight, isRus) || stateTimedelay(flight, isRus) || getInitialInfo(flight, isRus)
+                    [index]: getInitialInfo(flight, isRus)
                 }))
-            }, 10000);
+            }, 6000);
+            newTimers[index] = setTimeout(() => {
+                setInfoMap(prev => ({
+                    ...prev,
+                    [index]: getDelayedInfo(flight, isRus) || stateTimedelay(flight, isRus)
+                }))
+            }, 15000);
         })
         setInfoMap(newInfoMap)
         setTimers(prev => {

@@ -1,6 +1,5 @@
 const InfoVoice = ({ voiceInfo, cycel }) => {
     const isRus = cycel === 0 ? true : false
-
     if (!voiceInfo || voiceInfo.length === 0) {
         return (
             isRus ?
@@ -26,7 +25,6 @@ const InfoVoice = ({ voiceInfo, cycel }) => {
         )
     }
 
-    console.log(voiceInfo)
     const currentMessage = voiceInfo[0]?.MessageTextRU
 
     return (
