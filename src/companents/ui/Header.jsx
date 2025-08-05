@@ -29,7 +29,7 @@ const Header = ({ cycel }) => {
         updateVoice();
         updateTemp();
 
-        const updateVoiceInterval = setInterval(updateVoice, 60000);
+        const updateVoiceInterval = setInterval(updateVoice, 120000);
         const tempInterval = setInterval(updateTemp, 60000);
 
         return () => {
