@@ -36,7 +36,7 @@ const Time = () => {
             <div className='flex flex-col justify-center items-center h-full gap-1 '>
                 <h1 className='font-sans text-4xl'>{date}</h1>
                 <span className='flex justify-center'>
-                    <img src='./src/assets/aero.png' className='h-[4em] mt-3.5 mb-3.5' />
+                    <img src='./assets/aero-DlJKrng4.png' className='h-[4em] mt-3.5 mb-3.5' />
                 </span>
                 <h1 key={time} className='mb-5 font-bold text-6xl ' >{time}</h1>
             </div>

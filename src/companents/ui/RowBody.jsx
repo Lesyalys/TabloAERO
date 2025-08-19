@@ -81,7 +81,7 @@ const RowBody = ({ data, cycel }) => {
                 {data.map((flight, index) => (
                     <li key={index}
                         className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                        <span className="truncate ">{flight.time}</span>
+                        <span className="truncate ">{flight?.ex_scheddate ? <>{flight?.time} | {flight?.ex_scheddate.replace(/\./g, '/')}</> : <>{flight?.time}</>}</span>
                         <span className="truncate  text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
                         <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
                         <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>

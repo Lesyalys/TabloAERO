@@ -22,7 +22,7 @@ function App() {
         new Promise(res => GetTimetableDU(res))
       ]);
 
-      console.log("im relowd later 60 seck")
+      // console.log("im relowd later 60 seck")
       setData(prev => ({
         ...prev,
         arr: JSON.stringify(prev.arr) === JSON.stringify(arr) ? prev.arr : arr,
