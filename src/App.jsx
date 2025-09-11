@@ -7,28 +7,48 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { GetTimetable } from '../API/GetTimetable.js'
 import { GetTimetableDU } from '../API/GetTimetableDU.js'
-
+import { getImageCompanies } from '../API//GetImageCompany.js'
 
 function App() {
   const [correntPage, setCorrentPage] = useState(0);
   const [cycel, setCycel] = useState(0);
-  const [data, setData] = useState({ arr: [], dep: [] });
+  const [data, setData] = useState({ arr: [], dep: [], image: '' });
   const [loading, setLoading] = useState(true);
 
   const featchData = async () => {
     try {
       const [arr, dep] = await Promise.all([
         new Promise(res => GetTimetable(res)),
-        new Promise(res => GetTimetableDU(res))
+        new Promise(res => GetTimetableDU(res)),
       ]);
+      const allCompanies = [
+        ...new Set([
+          ...arr.map(item => item.company),
+          ...dep.map(item => item.company)
+        ])
+      ].filter(company => company);
 
-      // console.log("im relowd later 60 seck")
+      const companyImage = await getImageCompanies(allCompanies);
+
+      const imageMap = Object.fromEntries(companyImage.map(({ company, image }) => [company, image]))
+
+
+      const arrImage = arr.map(item => ({
+        ...item,
+        image: imageMap[item.company]
+      }))
+
+      const depImage = dep.map(item => ({
+        ...item,
+        image: imageMap[item.company]
+      }))
+
       setData(prev => ({
         ...prev,
-        arr: JSON.stringify(prev.arr) === JSON.stringify(arr) ? prev.arr : arr,
-        dep: JSON.stringify(prev.dep) === JSON.stringify(dep) ? prev.dep : dep
+        arr: JSON.stringify(prev.arr) === JSON.stringify(arr) ? prev.arr : arrImage,
+        dep: JSON.stringify(prev.dep) === JSON.stringify(dep) ? prev.dep : depImage
+        // image: arr ? arrImage : depImage
       }));
-
     } catch (error) {
       console.error('Ошибка загрузки:', error);
     } finally {
@@ -45,9 +65,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const needsPagination = data.arr.length > 6 || data.dep.length > 6;
-    const maxArrPags = Math.ceil(data.arr.length / 6);
-    const maxDepPags = Math.ceil(data.dep.length / 6);
+    const needsPagination = data.arr.length > 7 || data.dep.length > 7;
+    const maxArrPags = Math.ceil(data.arr.length / 7);
+    const maxDepPags = Math.ceil(data.dep.length / 7);
     const totalPage = Math.max(maxArrPags, maxDepPags, 1);
 
     const i = setInterval(() => {
@@ -63,8 +83,8 @@ function App() {
   }, [data.arr, data.dep, correntPage]);
 
   const pagination = (data, pages) => {
-    const start = pages * 6;
-    const end = start + 6
+    const start = pages * 7;
+    const end = start + 7
     return data.slice(start, end);
   }
 

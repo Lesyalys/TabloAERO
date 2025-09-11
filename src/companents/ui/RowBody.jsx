@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+// import { getImageCompany } from "../../../API/GetImageCompany";
 
 const RowBody = ({ data, cycel }) => {
     const isRus = cycel === 0 ? true : false;
@@ -75,32 +76,32 @@ const RowBody = ({ data, cycel }) => {
     }, [data, isRus])
 
     return (
+
         <div
-            className="w-1/2 mt-2.5 mr-10 last:mr-0 text-3xl">
+            className="w-1/2 mt-2.5 mr-10 last:mr-0 text-2xl">
             <ul className="uppercase last:mb-0 ">
                 {data.map((flight, index) => (
-                    <li key={index}
-                        className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-4 p-2.5`}>
-                        <span className="truncate ">{flight?.ex_scheddate ? <>{flight?.time} | {flight?.ex_scheddate.replace(/\./g, '/')}</> : <>{flight?.time}</>}</span>
-                        <span className="truncate  text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
-                        <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
-                        <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
-                    </li>
+                    <>
+                        {/* {flight?.ex_scheddate && <div className="w-1/2 mt-2.5 mr-10 last:mr-0">{flight?.ex_scheddate}</div>} */}
+                        <li key={index}
+                            className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-5 p-2.5`}>
+                            <span className="truncate ">
+                                <>{flight?.time}</>
+                            </span>
+                            {flight?.image ?
+                                <img src={`data:image/png;base64,${flight?.image}`} className="trancute "></img>
+                                :
+                                <span>{flight.company}</span>
+                            }
+                            <span className="truncate  text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
+                            <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
+                            <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
+                        </li>
+                    </>
                 ))}
             </ul>
 
         </div>
-
-        // <motion.div
-        // className="w-1/2 mt-2.5 mr-10 last:mr-0 text-3xl"}
-        // >
-        //    <span className="truncate ">{flight.time}</span>
-        //     <span className="truncate  text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
-        //     <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
-        //     <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
-
-        // </motion.div>
-
 
     )
 };
