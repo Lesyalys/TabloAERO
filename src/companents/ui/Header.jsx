@@ -8,16 +8,16 @@ import { getTemp } from "../../../API/GetTemp.js";
 // import { motion } from 'framer-motion';
 
 const Header = ({ cycel }) => {
-    const [voiceInfo, setvoiceInfo] = useState('');
+    // const [voiceInfo, setvoiceInfo] = useState('');
     const [temp, setTemp] = useState(0);
-    const updateVoice = useCallback(() => {
-        try {
-            getInfoVoice().then(v => setvoiceInfo(v)).catch(console.error);
+    // const updateVoice = useCallback(() => {
+    //     try {
+    //         getInfoVoice().then(v => setvoiceInfo(v)).catch(console.error);
 
-        } catch {
-            console.error();
-        }
-    }, [])
+    //     } catch {
+    //         console.error();
+    //     }
+    // }, [])
     const updateTemp = useCallback(async () => {
         try {
             getTemp().then(t => setTemp(t)).catch(console.error);
@@ -26,14 +26,14 @@ const Header = ({ cycel }) => {
         }
     }, []);
     useEffect(() => {
-        updateVoice();
+        // updateVoice();
         updateTemp();
 
-        const updateVoiceInterval = setInterval(updateVoice, 120000);
+        // const updateVoiceInterval = setInterval(updateVoice, 120000);
         const tempInterval = setInterval(updateTemp, 60000);
 
         return () => {
-            clearInterval(updateVoiceInterval);
+            // clearInterval(updateVoiceInterval);
             clearInterval(tempInterval);
         };
     }, []);
@@ -44,7 +44,7 @@ const Header = ({ cycel }) => {
                 <div className='p-2'>
                     <Temp temp={temp} cycel={cycel} />
                     <Time />
-                    <InfoVoice voiceInfo={voiceInfo} cycel={cycel} />
+                    {/* <InfoVoice voiceInfo={voiceInfo} cycel={cycel} /> */}
                 </div>
                 <ArrDepHeader cycel={cycel} />
             </div>

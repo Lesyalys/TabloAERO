@@ -9,9 +9,9 @@ export const getImageCompanies = (companyNames) => {
                     .then(response => {
                         let base64String = '';
                         if (Array.isArray(response.data) && response.data.length > 0) {
-                            base64String = response.data[0].IMAGEB64;
-                        } else if (response.data?.IMAGEB64) {
-                            base64String = response.data.IMAGEB64;
+                            base64String = response.data[0].IMAGEB64TAIL;
+                        } else if (response.data?.IMAGEB64TAIL) {
+                            base64String = response.data.IMAGEB64TAIL;
                         } else if (typeof response.data === 'string') {
                             base64String = response.data;
                         }

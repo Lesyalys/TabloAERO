@@ -65,9 +65,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const needsPagination = data.arr.length > 7 || data.dep.length > 7;
-    const maxArrPags = Math.ceil(data.arr.length / 7);
-    const maxDepPags = Math.ceil(data.dep.length / 7);
+    const needsPagination = data.arr.length > 5 || data.dep.length > 5;
+    const maxArrPags = Math.ceil(data.arr.length / 6);
+    const maxDepPags = Math.ceil(data.dep.length / 6);
     const totalPage = Math.max(maxArrPags, maxDepPags, 1);
 
     const i = setInterval(() => {
@@ -78,13 +78,13 @@ function App() {
         // const [cycel, setCycel] = useState(0);
         setCycel(i => i === 0 ? 1 : 0)
       }
-    }, 20000)
+    }, 25000)
     return () => clearInterval(i);
   }, [data.arr, data.dep, correntPage]);
 
   const pagination = (data, pages) => {
-    const start = pages * 7;
-    const end = start + 7
+    const start = pages * 6;
+    const end = start + 6
     return data.slice(start, end);
   }
 
@@ -101,8 +101,7 @@ function App() {
   return (
     <AnimatePresence mode='wait'>
 
-      <div
-        className='font-mono'>
+      <div>
         <Header cycel={cycel} />
         <motion.div
           key={`${cycel}-${correntPage}`}

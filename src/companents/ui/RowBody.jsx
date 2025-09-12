@@ -55,7 +55,7 @@ const RowBody = ({ data, cycel }) => {
                     ...prev,
                     [index]: getInitialInfo(flight, isRus)
                 }))
-            }, 6000);
+            }, 7000);
             newTimers[index] = setTimeout(() => {
                 setInfoMap(prev => ({
                     ...prev,
@@ -78,24 +78,27 @@ const RowBody = ({ data, cycel }) => {
     return (
 
         <div
-            className="w-1/2 mt-2.5 mr-10 last:mr-0 text-2xl">
+            className="w-1/2 mt-2.5 mr-10 last:mr-0">
             <ul className="uppercase last:mb-0 ">
                 {data.map((flight, index) => (
                     <>
                         {/* {flight?.ex_scheddate && <div className="w-1/2 mt-2.5 mr-10 last:mr-0">{flight?.ex_scheddate}</div>} */}
                         <li key={index}
-                            className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-5 p-2.5`}>
-                            <span className="truncate ">
+                            className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-5 p-2.5 items-center`}>
+                            <span className="truncate">
                                 <>{flight?.time}</>
                             </span>
-                            {flight?.image ?
-                                <img src={`data:image/png;base64,${flight?.image}`} className="trancute "></img>
-                                :
-                                <span>{flight.company}</span>
-                            }
                             <span className="truncate  text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}</span>
                             <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
                             <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
+                            <span className="truncate flex justify-end">
+                                {flight?.image ?
+                                    <img src={`data:image/png;base64,${flight?.image}`} className="trancute h-16"></img>
+                                    :
+                                    <span>{flight.company}</span>
+                                }
+
+                            </span>
                         </li>
                     </>
                 ))}
