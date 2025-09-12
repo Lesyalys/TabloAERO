@@ -39,15 +39,12 @@ const Header = ({ cycel }) => {
     }, []);
     return (
         <>
-            <div
-            >
-                <div className='p-2'>
-                    <Temp temp={temp} cycel={cycel} />
-                    <Time />
-                    {/* <InfoVoice voiceInfo={voiceInfo} cycel={cycel} /> */}
-                </div>
-                <ArrDepHeader cycel={cycel} />
+            <div className='p-2 text-2xl'>
+                <Temp temp={temp} cycel={cycel} />
+                <Time />
+                {/* <InfoVoice voiceInfo={voiceInfo} cycel={cycel} /> */}
             </div>
+            <ArrDepHeader cycel={cycel} />
         </>
     )
 }

@@ -55,7 +55,7 @@ const RowBody = ({ data, cycel }) => {
                     ...prev,
                     [index]: getInitialInfo(flight, isRus)
                 }))
-            }, 7000);
+            }, 8000);
             newTimers[index] = setTimeout(() => {
                 setInfoMap(prev => ({
                     ...prev,
@@ -78,13 +78,17 @@ const RowBody = ({ data, cycel }) => {
     return (
 
         <div
-            className="w-1/2 mt-2.5 mr-10 last:mr-0">
+            className="w-1/2 mt-2.5 mr-10 last:mr-0 text-[21px]">
             <ul className="uppercase last:mb-0 ">
                 {data.map((flight, index) => (
                     <>
                         {/* {flight?.ex_scheddate && <div className="w-1/2 mt-2.5 mr-10 last:mr-0">{flight?.ex_scheddate}</div>} */}
                         <li key={index}
-                            className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-5 p-2.5 items-center`}>
+                            className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-5 p-2 items-center rounded-lg shadow-xl border-l-5
+                            ${flight?.landed === "ПРИ" || flight?.tchkbegin ? "border-green-600"
+                                    : flight?.tookoff === "ВЫЛ" ? "border-yellow-600"
+                                        : "border-gray-600"}`}
+                        >
                             <span className="truncate">
                                 <>{flight?.time}</>
                             </span>
@@ -92,19 +96,14 @@ const RowBody = ({ data, cycel }) => {
                             <span className="truncate  text-[#ffffff] text-center" >{infoMap[index] || stateHall(flight, isRus) || stateTimedelay(flight, isRus)}</span>
                             <span className="truncate  text-[#FFCC32] text-right font-sans font-medium">{renderFlightNumber(flight)}</span>
                             <span className="truncate flex justify-end">
-                                {flight?.image ?
-                                    <img src={`data:image/png;base64,${flight?.image}`} className="trancute h-16"></img>
-                                    :
-                                    <span>{flight.company}</span>
-                                }
-
+                                <img src={`data:image/png;base64,${flight?.image ? flight?.image : "../../../public/empty.png"} `} className="trancute h-16"></img>
                             </span>
-                        </li>
+                        </li >
                     </>
                 ))}
             </ul>
 
-        </div>
+        </div >
 
     )
 };

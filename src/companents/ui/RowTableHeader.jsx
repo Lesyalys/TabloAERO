@@ -1,6 +1,6 @@
 const RowTableHeader = ({ cycel }) => {
     return (
-        <div className="w-1/2 mr-10 last:mr-0">
+        <div className="w-1/2 mr-10 last:mr-0 text-2xl">
             <ul className="grid grid-cols-5 mt-3">
                 <li className="flex items-center justify-start">{cycel === 0 ? "Время" : "Time"}</li>
                 <li className="flex items-start justify-start">{cycel === 0 ? "Направление" : "Direction"}</li>
