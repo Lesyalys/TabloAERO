@@ -34,7 +34,6 @@ const RowBody = ({ data, cycel }) => {
     //причина обстоятельств если есть
     // const codedelay = (flight) => {
     //     return (
-    //             flight?.codedelay ===
 
     //     )
     // }
