@@ -17,6 +17,7 @@ function App() {
 
   const featchData = async () => {
     try {
+      console.log("DATAS RELOAD");
       const [arr, dep] = await Promise.all([
         new Promise(res => GetTimetable(res)),
         new Promise(res => GetTimetableDU(res)),
@@ -65,9 +66,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const needsPagination = data.arr.length > 5 || data.dep.length > 5;
-    const maxArrPags = Math.ceil(data.arr.length / 6);
-    const maxDepPags = Math.ceil(data.dep.length / 6);
+    const needsPagination = data.arr.length > 4 || data.dep.length > 4;
+    const maxArrPags = Math.ceil(data.arr.length / 5);
+    const maxDepPags = Math.ceil(data.dep.length / 5);
     const totalPage = Math.max(maxArrPags, maxDepPags, 1);
 
     const i = setInterval(() => {
@@ -83,8 +84,8 @@ function App() {
   }, [data.arr, data.dep, correntPage]);
 
   const pagination = (data, pages) => {
-    const start = pages * 6;
-    const end = start + 6
+    const start = pages * 5;
+    const end = start + 5
     return data.slice(start, end);
   }
 

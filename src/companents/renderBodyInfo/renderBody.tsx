@@ -1,43 +1,71 @@
-export const renderFlightNumber = (flight) => {
+export const renderFlightNumber = (flight: any) => {
     if (!flight?.company || !flight?.flight) return 'N/A';
     return `${flight.company} ${flight.flight}`;
 };
 
-export const checkong = (flight) => {
+export const tbrdbegin = (flight: any, isRus: any) => {
     return (
-        flight?.checking === "РЕГ" && flight?.tchkend ? `Регистрация заканчивается в ${flight?.tchkend}` : ""
+        isRus
+            // ? (flight?.tbrdbegin ? ` Начало посадки в ${flight?.tbrdbegin}` : "")
+            // : (flight?.tbrdbegin ? ` Start of boarding at ${flight?.tbrdbegin}` : "")
+            ? (flight?.tbrdbegin ? ` Начало посадки в ${flight?.tbrdbegin}` : "")
+            : (flight?.tbrdbegin ? ` Boarding at ${flight?.tbrdbegin}` : "")
     )
 }
 
-export const boarding = (flight) => {
+export const tchkbegin = (flight: any, isRus: any) => {
     return (
-        flight?.boarding === "ПОС" && flight?.tbrdend ? `Посадка заканчивается в ${flight?.tbrdend}` : ""
+        isRus
+            // ? (flight?.tbrdbegin ? `  Начало регистрации в ${flight?.tchkbegin}` : "")
+            // : (flight?.tbrdbegin ? `  Start of registration in ${flight?.tchkbegin}` : "")
+            ? (flight?.tbrdbegin ? `Начало регистрации в ${flight?.tchkbegin}` : "")
+            : (flight?.tbrdbegin ? `Registration in ${flight?.tchkbegin}` : "")
     )
 }
 
-export const colors = (flight, type) => {
-    return (flight?.landed === "ПРИ" || flight?.tchkbegin ? `${type}-green-600`
-        : flight?.tookoff === "ВЫЛ" ? `${type}-yellow-600`
-            : `${type}-gray-600`)
+export const checkong = (flight: any, isRus: any) => {
+    return (
+        isRus
+            ? (flight?.checking && flight?.tchkend ? `Регистрация заканчивается в ${flight?.tchkend}` : "")
+            : (flight?.checking && flight?.tchkend ? `Registration ends at ${flight?.tchkend}` : "")
+    )
 }
 
-export const getInitialInfo = (flight, isRus) => {
+export const boarding = (flight: any, isRus: any) => {
+    return (
+        isRus
+            ? (flight?.boarding && flight?.tbrdend ? ` Посадка заканчивается в ${flight?.tbrdend}` : "")
+            : (flight?.boarding && flight?.tbrdend ? ` Boarding ends at ${flight?.tbrdend}` : "")
+    )
+}
+
+export const desk = (flight: any, isRus: any) => {
+    return (
+        isRus
+            ? (flight?.desk ? `Стойка ${flight?.desk}` : "")
+            : (flight?.desk ? `Desk ${flight?.desk}` : "")
+    )
+}
+
+
+export const getInitialInfo = (flight: any, isRus: any) => {
     return isRus
         ? (flight?.landed === "ПРИ" ? "Прибыл" : (flight?.tookoff === "ВЫЛ" ? 'Вылетел' : ''))
         : (flight?.landed === "ПРИ" ? "arrived" : (flight?.tookoff === "ВЫЛ" ? 'departure' : ''))
 }
 
-export const stateTimedelay = (flight, isRus) => {
+
+export const stateTimedelay = (flight: any, isRus: any) => {
     return (
         flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
             (isRus
-                ? `Ожидается в ${flight?.timedelay}`
-                : `Expected in ${flight?.timedelay}`)
+                ? ` Ожидается в ${flight?.timedelay}`
+                : ` Expected in ${flight?.timedelay}`)
             : ''
     )
 
 }
-export const stateHall = (flight, isRus) => {
+export const stateHall = (flight: any, isRus: any) => {
     return isRus ? `Терминал ${flight?.hall}` : `Terminal ${flight?.hall}`
 }
 //причина обстоятельств если есть
@@ -47,8 +75,20 @@ export const stateHall = (flight, isRus) => {
 //     )
 // }
 
-export const getDelayedInfo = (flight, isRus) => {
+export const getDelayedInfo = (flight: any, isRus: any) => {
     return isRus ?
         (flight?.tchkbegin ? `Регистрация ${flight?.tchkbegin}` : '')
         : (flight?.tchkbegin ? `Registration ${flight?.tchkbegin}` : '')
+}
+
+export const colors = (flight: any, type: string) => {
+    if (flight?.landed === "ПРИ" || flight?.tchkbegin) {
+        return type === "border" ? "border-l-4 border-green-600" : "bg-black";
+    } else if (flight?.tookoff === "ВЫЛ") {
+        return type === "border" ? "border-l-4 border-yellow-600" : "bg-black";
+    } else if (flight?.checking) {
+        return type === "border" ? "border-l-4 border-green-600" : "bg-black";
+    } else {
+        return type === "border" ? "border-l-4 border-gray-600" : "bg-black";
+    }
 }

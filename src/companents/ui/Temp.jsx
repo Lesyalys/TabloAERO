@@ -1,5 +1,6 @@
 // import { useState, useEffect } from "react";
 // import { getTemp } from "../../../API/GetTemp";
+import { Time } from "./Time";
 
 const Temp = ({ temp, cycel }) => {
     const imgTemp = temp >= 0 ?
@@ -31,9 +32,12 @@ const Temp = ({ temp, cycel }) => {
     const colorTemp = (<span className={`${temp > 0 ? "text-yellow-300" : "text-blue-300"} font-bold`}>{temp}°C</span>)
 
     return (
-        <div className="flex items-center pt-2 gap-2">
-            <>{imgTemp}</>
-            <span>{cycel === 0 ? 'Нижневартовск' : 'Nizhnevartovsk'} {colorTemp}</span>
+        <div className="flex items-center pt-2 gap-2 justify-between">
+            <div className="flex items-center gap-2">
+                <>{imgTemp}</>
+                <span>{cycel === 0 ? 'Нижневартовск' : 'Nizhnevartovsk'} {colorTemp}</span>
+            </div>
+            <Time />
         </div>
     );
 }

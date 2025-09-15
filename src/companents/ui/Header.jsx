@@ -41,7 +41,7 @@ const Header = ({ cycel }) => {
         <>
             <div className='p-2 text-2xl'>
                 <Temp temp={temp} cycel={cycel} />
-                <Time />
+                {/* <Time /> */}
                 {/* <InfoVoice voiceInfo={voiceInfo} cycel={cycel} /> */}
             </div>
             <ArrDepHeader cycel={cycel} />

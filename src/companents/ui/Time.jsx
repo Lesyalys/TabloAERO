@@ -33,7 +33,7 @@ const Time = () => {
             {/* <span className='flex justify-center'>
                     <img src='./src/assets/aero.png' className='h-[90px]' />
                 </span> */}
-            <div className='flex flex-col justify-center items-center h-full gap-1 '>
+            <div className='flex flex-col justify-end items-end h-full gap-1 '>
                 <h1 className='font-sans text-3xl'>{date}</h1>
                 <span className='flex justify-center'>
                     {/* <img src='/Tablo_1/public/aero.png' className='h-[2em] mt-3.5 mb-3.5' /> */}
