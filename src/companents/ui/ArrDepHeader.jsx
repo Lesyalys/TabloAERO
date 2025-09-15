@@ -10,7 +10,7 @@ const ArrDepHeader = ({ cycel }) => {
                     {cycel === 0 ? "Прилет" : "arrived"}</h1>
             </span>
 
-            <span className='flex flex-row items-center'>
+            <span className='flex flex-row items-end'>
                 {/* <img src={planeDep} alt="" width="100rm" height="100rm"></img> */}
                 <h1 className='text-left'>
                     {cycel === 0 ? "Вылет" : "departures"}</h1>

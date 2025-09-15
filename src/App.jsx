@@ -78,7 +78,7 @@ function App() {
         // const [cycel, setCycel] = useState(0);
         setCycel(i => i === 0 ? 1 : 0)
       }
-    }, 25000)
+    }, 20000)
     return () => clearInterval(i);
   }, [data.arr, data.dep, correntPage]);
 
