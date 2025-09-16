@@ -5,7 +5,7 @@ export async function GetTimetable(cb) {
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: 'http://127.0.0.1:3000/get/xalTabloAR',
+        url: 'http://172.17.0.19:3001/get/xalTabloAR',
         headers: {}
     };
 

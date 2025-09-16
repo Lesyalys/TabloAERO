@@ -5,7 +5,7 @@ export const getImageCompanies = (companyNames) => {
         companyNames.map(company =>
             new Promise((resolve) => {
                 const companyValid = company || '';
-                axios.get(`http://172.17.10.12:3000/getImage/${companyValid}`)
+                axios.get(`http://172.20.0.33:3010/getImage/${companyValid}`)
                     .then(response => {
                         let base64String = '';
                         if (Array.isArray(response.data) && response.data.length > 0) {

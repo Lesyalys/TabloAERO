@@ -3,14 +3,14 @@
 
 const ArrDepHeader = ({ cycel }) => {
     return (
-        <span className='grid grid-cols-2 gap-20 uppercase text-5xl items-center mt-8 mb-5 font-bold'>
+        <span className='grid grid-cols-2 uppercase text-5xl items-center mt-5 mb-5 font-bold'>
             <span className='flex flex-row items-center p-0 m-0'>
                 {/* <img src={planeArr} alt="" width="100rm" height="100rm"></img> */}
                 <h1 className='text-left'>
                     {cycel === 0 ? "Прилет" : "arrived"}</h1>
             </span>
 
-            <span className='flex flex-row items-end '>
+            <span className='flex flex-row items-end justify-self-end '>
                 {/* justify-self-end */}
                 {/* <img src={planeDep} alt="" width="100rm" height="100rm"></img> */}
                 <h1 className='text-left'>

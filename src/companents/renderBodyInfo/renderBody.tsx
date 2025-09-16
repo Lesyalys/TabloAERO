@@ -82,13 +82,27 @@ export const getDelayedInfo = (flight: any, isRus: any) => {
 }
 
 export const colors = (flight: any, type: string) => {
-    if (flight?.landed === "ПРИ" || flight?.tchkbegin) {
-        return type === "border" ? "border-l-4 border-green-600" : "bg-black";
-    } else if (flight?.tookoff === "ВЫЛ") {
-        return type === "border" ? "border-l-4 border-yellow-600" : "bg-black";
-    } else if (flight?.checking) {
-        return type === "border" ? "border-l-4 border-green-600" : "bg-black";
-    } else {
-        return type === "border" ? "border-l-4 border-gray-600" : "bg-black";
+    if (flight?.landed || flight?.tookoff || flight?.boarding || flight?.checking || flight?.tbrdbegin) {
+        return type === "border" ? "border-l-4 border-green-800" : "bg-gradient-to-r from-green-800 to-gray-900";
+        // } else if (flight?.tookoff === "ВЫЛ") {
+        //     return type === "border" ? "border-l-4 border-yellow-600" : "bg-black";
+        // } else if (flight?.checking) {
+        //     return type === "border" ? "border-l-4 border-green-600" : "bg-black";
+        // }
     }
+    else {
+        return type === "border" ? "border-l-4 border-gray-600" : "";
+    }
+}
+
+export const hasContent = (flight, isRus) => {
+    return (
+
+        getInitialInfo(flight, isRus) ||
+        stateTimedelay(flight, isRus) ||
+        tchkbegin(flight, isRus) ||
+        checkong(flight, isRus) ||
+        tbrdbegin(flight, isRus) ||
+        boarding(flight, isRus)
+    )
 }
