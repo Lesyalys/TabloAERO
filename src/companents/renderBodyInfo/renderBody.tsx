@@ -8,8 +8,8 @@ export const tbrdbegin = (flight: any, isRus: any) => {
         isRus
             // ? (flight?.tbrdbegin ? ` Начало посадки в ${flight?.tbrdbegin}` : "")
             // : (flight?.tbrdbegin ? ` Start of boarding at ${flight?.tbrdbegin}` : "")
-            ? (flight?.tbrdbegin ? `Начало посадки в ${flight?.tbrdbegin}` : "")
-            : (flight?.tbrdbegin ? `Boarding at ${flight?.tbrdbegin}` : "")
+            ? (flight?.tbrdbegin ? ` ▪ Начало посадки в ${flight?.tbrdbegin}` : "")
+            : (flight?.tbrdbegin ? ` ▪ Boarding at ${flight?.tbrdbegin}` : "")
     )
 }
 
@@ -18,8 +18,8 @@ export const tchkbegin = (flight: any, isRus: any) => {
         isRus
             // ? (flight?.tbrdbegin ? `  Начало регистрации в ${flight?.tchkbegin}` : "")
             // : (flight?.tbrdbegin ? `  Start of registration in ${flight?.tchkbegin}` : "")
-            ? (flight?.tbrdbegin ? `Начало регистрации в ${flight?.tchkbegin}` : "")
-            : (flight?.tbrdbegin ? `Registration in ${flight?.tchkbegin}` : "")
+            ? (flight?.tbrdbegin ? ` ▪ Начало регистрации в ${flight?.tchkbegin}` : "")
+            : (flight?.tbrdbegin ? ` ▪ Registration in ${flight?.tchkbegin}` : "")
     )
 }
 
@@ -50,8 +50,8 @@ export const desk = (flight: any, isRus: any) => {
 
 export const getInitialInfo = (flight: any, isRus: any) => {
     return isRus
-        ? (flight?.landed === "ПРИ" ? "Прибыл" : (flight?.tookoff === "ВЫЛ" ? 'Вылетел' : ''))
-        : (flight?.landed === "ПРИ" ? "arrived" : (flight?.tookoff === "ВЫЛ" ? 'departure' : ''))
+        ? (flight?.landed === "ПРИ" ? " ▪ Прибыл" : (flight?.tookoff === "ВЫЛ" ? ' ▪ Вылетел' : ''))
+        : (flight?.landed === "ПРИ" ? " ▪ arrived" : (flight?.tookoff === "ВЫЛ" ? ' ▪ departure' : ''))
 }
 
 

@@ -56,7 +56,7 @@ const RowBody = ({ data, cycel }) => {
 
     return (
         // text-[21px]
-        <div className="w-1/2  mr-6 last:mr-0 ">
+        <div className="w-1/2 last:mr-0 ">
             <ul className="uppercase last:mb-0">
                 {data.map((flight, index) => (
                     <div key={index} className="colum items-start">
@@ -65,8 +65,8 @@ const RowBody = ({ data, cycel }) => {
                             <span key={index} className="bg-gray-800">{flight?.ex_scheddate.replace(/\./g, "/")}</span>
                         } */}
                         {/* } */}
-                        <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-[45%_30%_25%] p-2 items-center rounded-lg text-left  whitespace-normal break-words ${colors(flight, "border", isRus)}`}>
-                            <span className=" truncate pl-3 flex flex-row gap-4 justify-start">
+                        <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-[40%_30%_30%] p-1 items-center rounded-lg text-left  whitespace-normal break-words ${colors(flight, "border", isRus)}`}>
+                            <span className=" truncate pl-3 flex flex-row gap-2 justify-start">
                                 <span>
                                     {flight?.time}
                                 </span>
@@ -74,7 +74,7 @@ const RowBody = ({ data, cycel }) => {
                                     {cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}
                                 </span>
                             </span>
-                            <span className="truncate text-[#ffffff] text-end whitespace-normal break-words">
+                            <span className="truncate text-[#ffffff] text-end pr-1 whitespace-normal break-words">
                                 {infoMap[index]}
                             </span>
                             <span className="truncate text-[#FFCC32] text-center font-sans font-medium flex flex-row justify-end gap-2 items-center">
@@ -88,7 +88,7 @@ const RowBody = ({ data, cycel }) => {
                             {/* <span className="truncate flex justify-end"> */}
                             {/* </span> */}
                             {hasContent(flight, isRus) &&
-                                (<span span className={`rounded-lg text-start gap-1 flex text-[70%] whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
+                                (<span span className={`rounded-lg text-start gap-1 flex text-[65%] whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
                                     <hr className={`mt-2 border-lg  border-[#444444]`} />
                                     {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
                                     {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
