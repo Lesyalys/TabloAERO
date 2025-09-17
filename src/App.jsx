@@ -111,14 +111,18 @@ function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
           className="flex flex-col gap-2.5">
-          <div className="flex flex-row justify-between  gap-2.5">
-            <RowTableHeader cycel={cycel} />
-            <RowTableHeader cycel={cycel} />
+          <div className="flex flex-row justify-between ">
+            {/* <RowTableHeader cycel={cycel} /> */}
+            {/* <RowTableHeader cycel={cycel} /> */}
           </div>
 
-          <div className="flex flex-row justify-between gap-2.5 pt-2">
+          <div className="flex flex-row justify-between gap-2.5 text-[18px] ">
+            {/* <div className='w-full]'> */}
             <RowBody cycel={cycel} data={pagination(data.arr, correntPage)} />
+            {/* </div> */}
+            {/* <div className='w-full'> */}
             <RowBody cycel={cycel} data={pagination(data.dep, correntPage)} />
+            {/* </div> */}
           </div>
         </motion.div>
       </div>
