@@ -116,7 +116,7 @@ function App() {
             {/* <RowTableHeader cycel={cycel} /> */}
           </div>
 
-          <div className="flex flex-row justify-between gap-2.5 text-[14px] ">
+          <div className="flex flex-row justify-between gap-2.5 text-[18px] ">
             {/* <div className='w-full]'> */}
             <RowBody cycel={cycel} data={pagination(data.arr, correntPage)} />
             {/* </div> */}

@@ -88,7 +88,7 @@ const RowBody = ({ data, cycel }) => {
                             {/* <span className="truncate flex justify-end"> */}
                             {/* </span> */}
                             {hasContent(flight, isRus) &&
-                                (<span span className={`rounded-lg text-start gap-1 flex text-[65%] whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
+                                (<span span className={`pl-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
                                     <hr className={`mt-2 border-lg  border-[#444444]`} />
                                     {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
                                     {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
