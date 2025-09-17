@@ -40,7 +40,7 @@ const Header = ({ cycel }) => {
     return (
         <>
             <div className='p-2 text-2xl'>
-                <Temp temp={temp} cycel={cycel} />
+                {/* <Temp temp={temp} cycel={cycel} /> */}
                 {/* <Time /> */}
                 {/* <InfoVoice voiceInfo={voiceInfo} cycel={cycel} /> */}
             </div>

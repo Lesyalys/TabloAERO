@@ -56,7 +56,7 @@ const RowBody = ({ data, cycel }) => {
 
     return (
         // text-[21px]
-        <div className="w-1/2  mr-6 last:mr-0 text-2xl">
+        <div className="w-1/2  mr-6 last:mr-0 ">
             <ul className="uppercase last:mb-0">
                 {data.map((flight, index) => (
                     <div key={index} className="colum items-start">
@@ -65,24 +65,31 @@ const RowBody = ({ data, cycel }) => {
                             <span key={index} className="bg-gray-800">{flight?.ex_scheddate.replace(/\./g, "/")}</span>
                         } */}
                         {/* } */}
-                        <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-5 p-2 items-center rounded-lg  ${colors(flight, "border")}`}>
-                            <span className="truncate pl-3">{flight?.time}</span>
-                            <span className="truncate text-[#00b7ff] text-left">{cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}
-                                {/* {tchkbegin(flight, isRus) || tbrdbegin(flight, isRus) || checkong(flight, isRus) || boarding(flight, isRus) && */}
-
-                                {/* } */}
+                        <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-[45%_30%_25%] p-2 items-center rounded-lg text-left  whitespace-normal break-words ${colors(flight, "border", isRus)}`}>
+                            <span className=" truncate pl-3 flex flex-row gap-4 justify-start">
+                                <span>
+                                    {flight?.time}
+                                </span>
+                                <span className="text-[#00b7ff]">
+                                    {cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}
+                                </span>
                             </span>
-                            <span className="truncate text-[#ffffff] text-center">{infoMap[index]}</span>
-                            <span className="truncate text-[#FFCC32] text-center font-sans font-medium">{renderFlightNumber(flight)}</span>
-                            <span className="truncate flex justify-end">
+                            <span className="truncate text-[#ffffff] text-end whitespace-normal break-words">
+                                {infoMap[index]}
+                            </span>
+                            <span className="truncate text-[#FFCC32] text-center font-sans font-medium flex flex-row justify-end gap-2 items-center">
+                                {renderFlightNumber(flight)}
                                 {flight?.image ?
-                                    <img src={`data:image/png;base64,${flight?.image}`} className="trancute h-18" alt="Flight" />
+                                    <img src={`data:image/png;base64,${flight?.image}`} className="truncate h-16 md:h-10" alt="Flight" />
                                     :
-                                    <img src="./empty.png" className="trancute h-16" alt="No image" />
+                                    <img src="./empty.png" className="trancute h-16 md:h-10" alt="No image" />
                                 }
                             </span>
+                            {/* <span className="truncate flex justify-end"> */}
+                            {/* </span> */}
                             {hasContent(flight, isRus) &&
-                                (<span span className={`rounded-lg text-start p-3 pl-2 flex text-[70%] whitespace-normal break-words text-white col-span-5 font-bold ${colors(flight, "bg")}`}>
+                                (<span span className={`rounded-lg text-start gap-1 flex text-[70%] whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
+                                    <hr className={`mt-2 border-lg  border-[#444444]`} />
                                     {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
                                     {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
                                     {flight?.tbrdbegin ? tbrdbegin(flight, isRus) : boarding(flight, isRus)}
