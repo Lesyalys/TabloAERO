@@ -17,7 +17,7 @@ function App() {
 
   const featchData = async () => {
     try {
-      console.log("DATAS RELOAD");
+      // console.log("DATAS RELOAD");
       const [arr, dep] = await Promise.all([
         new Promise(res => GetTimetable(res)),
         new Promise(res => GetTimetableDU(res)),
@@ -120,7 +120,7 @@ function App() {
             {/* <RowTableHeader cycel={cycel} /> */}
           </div>
 
-          <div className="flex flex-row justify-between gap-2.5 text-[18px] ">
+          <div className="flex flex-col md:w-full justify-between gap-2.5 text-[18px] md:flex-row ">
             {/* <div className='w-full]'> */}
             <RowBody cycel={cycel} data={pagination(data.arr, correntPage)} />
             {/* </div> */}

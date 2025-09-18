@@ -97,9 +97,30 @@ export const colors = (flight: any, type: string, isRus: any) => {
 //     return (isRus ? (flight?.thr2 ? flight?.thr2 : "") : "")
 // }
 
-// export const ex_scheddate = (flight: any) => {
-//     return (flight?.ex_scheddate && (flight?.ex_scheddate))
-// }
+export const ex_scheddate = (flight: any, isRus: any) => {
+    console.log(flight[1])
+
+    const day = flight[0];
+    const mounth = flight[1];
+    const curentYear = new Date().getFullYear();
+    const date = new Date(curentYear, parseInt(mounth) - 1, parseInt(day));
+    const weekDays = isRus
+        ? ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"]
+        : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = isRus ? [
+        "января", "февраля", "марта", "апреля", "мая", "июня",
+        "июля", "августа", "сентября", "октября", "ноября", "декабря"
+    ]
+        :
+        ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"]
+
+    const monthName = months[parseInt(mounth) - 1]
+    const nameWeek = weekDays[date.getDay()]
+    return (
+        `${day} ${monthName} ${nameWeek}`
+    )
+}
 
 export const hasContent = (flight: any, isRus: any) => {
     return (

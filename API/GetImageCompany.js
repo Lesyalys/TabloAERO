@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export const getImageCompanies = (companyNames) => {
-    //    const currentHost = window.location.origin;
+    const currentHost = window.location.origin;
     return Promise.all(
         companyNames.map(company =>
             new Promise((resolve) => {
                 const companyValid = company || '';
-                axios.get(`http://172.20.0.33:3010/getImage/${companyValid}`)
+                axios.get(`https://tablo.nv-aero.ru/getImage/${companyValid}`)
                     .then(response => {
                         let base64String = '';
                         if (Array.isArray(response.data) && response.data.length > 0) {

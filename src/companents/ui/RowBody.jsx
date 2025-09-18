@@ -13,12 +13,12 @@ import {
     desk,
     hasContent,
     // thr2,
-    // ex_scheddate
+    ex_scheddate
 } from '../renderBodyInfo/renderBody.tsx'
 // import { getImageCompany } from "../../../API/GetImageCompany";
 
 const RowBody = ({ data, cycel }) => {
-    console.log(data)
+    // console.log(data)
     const isRus = cycel === 0 ? true : false;
 
     const [timers, setTimers] = useState({});
@@ -57,16 +57,17 @@ const RowBody = ({ data, cycel }) => {
 
     const firstArr = data.find(item => item.ex_scheddate && item.dep);
     const firstDep = data.find(item => item.ex_scheddate && item.arr)
-    console.log(firstArr)
+    // console.log(firstArr)
     return (
         // text-[21px]
-        <div className="w-1/2 last:mr-0 ">
+        <div className="w-full md:w-1/2 last:mr-0">
             <ul className="uppercase last:mb-0">
                 {data.map((flight, index) => (
                     <div key={index} className="colum items-start">
                         {(firstArr === flight || firstDep === flight) && (
                             <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-lg mt-2 mb-2">
-                                {flight?.ex_scheddate}
+                                {/* {flight?.ex_scheddate} */}
+                                {ex_scheddate(flight?.ex_scheddate.split((".")[0]), isRus)}
                             </span>)
                         }
                         {/* {tchkbegin(flight) || tbrdbegin(flight) || checkong(flight) || boarding(flight) && */}
