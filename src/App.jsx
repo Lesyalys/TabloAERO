@@ -106,8 +106,10 @@ function App() {
   return (
     <AnimatePresence mode='wait'>
 
-      <div>
-        <Header cycel={cycel} />
+      <div >
+        <span className='hidden md:block'>
+          <Header cycel={cycel} />
+        </span>
         <motion.div
           key={`${cycel}-${correntPage}`}
           initial={{ opacity: 0 }}
@@ -120,11 +122,17 @@ function App() {
             {/* <RowTableHeader cycel={cycel} /> */}
           </div>
 
-          <div className="flex flex-col md:w-full justify-between gap-2.5 text-[18px] md:flex-row ">
+          <div className="flex flex-col md:w-full justify-between gap-2.5 md:text-[18px] md:flex-row text-[12px]">
             {/* <div className='w-full]'> */}
+            <span className='block uppercase md:hidden'>
+              <h1>{cycel === 0 ? "Прилет" : "arrived"}</h1>
+            </span>
             <RowBody cycel={cycel} data={pagination(data.arr, correntPage)} />
             {/* </div> */}
             {/* <div className='w-full'> */}
+            <span className='block uppercase md:hidden'>
+              <h1>{cycel === 0 ? "Вылет" : "departures"}</h1>
+            </span>
             <RowBody cycel={cycel} data={pagination(data.dep, correntPage)} />
             {/* </div> */}
           </div>

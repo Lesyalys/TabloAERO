@@ -56,16 +56,26 @@ const RowBody = ({ data, cycel }) => {
     }, [data, isRus])
 
     const firstArr = data.find(item => item.ex_scheddate && item.dep);
-    const firstDep = data.find(item => item.ex_scheddate && item.arr)
-    // console.log(firstArr)
+    const firstDep = data.find(item => item.ex_scheddate && item.arr);
+    const firstArrToday = data.find(item => item.arr);
+    const firstDepToday = data.find(item => item.dep);
+    const date = new Date();
+    const m = date.getMonth() + 1;
+    // console.log(date.toString())
     return (
         // text-[21px]
         <div className="w-full md:w-1/2 last:mr-0">
             <ul className="uppercase last:mb-0">
                 {data.map((flight, index) => (
                     <div key={index} className="colum items-start">
-                        {(firstArr === flight || firstDep === flight) && (
+                        {(firstArrToday === flight || firstDepToday === flight) && (flight !== firstDep && flight !== firstArr) && (
                             <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-lg mt-2 mb-2">
+                                {/* {flight?.ex_scheddate} */}
+                                {ex_scheddate([date.getDate().toString(), m.toString()], isRus)}
+                            </span>)
+                        }
+                        {(firstArr === flight || firstDep === flight) && (
+                            <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-[3px] mt-2 mb-2">
                                 {/* {flight?.ex_scheddate} */}
                                 {ex_scheddate(flight?.ex_scheddate.split((".")[0]), isRus)}
                             </span>)
@@ -88,15 +98,15 @@ const RowBody = ({ data, cycel }) => {
                                     }
                                 </span>
                             </span>
-                            <span className="truncate text-[#ffffff] text-senter  whitespace-normal break-words">
+                            <span className="truncate text-[#ffffff] text-center  whitespace-normal break-words">
                                 {infoMap[index]}
                             </span>
                             <span className="truncate text-[#FFCC32] text-center font-sans font-medium flex flex-row justify-end gap-1 items-center">
                                 {renderFlightNumber(flight)}
                                 {flight?.image ?
-                                    <img src={`data:image/png;base64,${flight?.image}`} className="truncate h-16 md:h-10" alt="Flight" />
+                                    <img src={`data:image/png;base64,${flight?.image}`} className="truncate h-16 md:h-10 hidden md:block" alt="Flight" />
                                     :
-                                    <img src="./empty.png" className="trancute h-16 md:h-10" alt="No image" />
+                                    <img src="./empty.png" className="truncate h-16 md:h-10 hidden md:block" alt="No image" />
                                 }
                             </span>
                             {/* <span className="truncate flex justify-end"> */}

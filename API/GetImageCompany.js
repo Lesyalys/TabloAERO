@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getImageCompanies = (companyNames) => {
-    const currentHost = window.location.origin;
+    // const currentHost = window.location.origin;
     return Promise.all(
         companyNames.map(company =>
             new Promise((resolve) => {

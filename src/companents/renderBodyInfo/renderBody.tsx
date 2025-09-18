@@ -104,6 +104,7 @@ export const ex_scheddate = (flight: any, isRus: any) => {
     const mounth = flight[1];
     const curentYear = new Date().getFullYear();
     const date = new Date(curentYear, parseInt(mounth) - 1, parseInt(day));
+
     const weekDays = isRus
         ? ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"]
         : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

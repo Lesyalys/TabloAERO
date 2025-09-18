@@ -3,7 +3,7 @@
 
 const ArrDepHeader = ({ cycel }) => {
     return (
-        <span className='grid grid-cols-2 uppercase text-4xl items-center mb-5 font-bold'>
+        <span className='grid grid-cols-2 uppercase md:text-4xl items-center md:mb-5 font-bold'>
             <span className='flex flex-row items-center p-0 m-0'>
                 {/* <img src={planeArr} alt="" width="15%" height="15%"></img> */}
                 <h1 className='text-left'>
