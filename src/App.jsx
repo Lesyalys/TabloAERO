@@ -36,12 +36,16 @@ function App() {
 
       const arrImage = arr.map(item => ({
         ...item,
-        image: imageMap[item.company]
+        image: imageMap[item.company],
+        arr: true,
+        dep: false
       }))
 
       const depImage = dep.map(item => ({
         ...item,
-        image: imageMap[item.company]
+        image: imageMap[item.company],
+        arr: false,
+        dep: true
       }))
 
       setData(prev => ({

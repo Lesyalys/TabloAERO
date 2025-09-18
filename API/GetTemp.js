@@ -2,9 +2,10 @@ import axios from "axios"
 
 
 export async function getTemp() {
+    const currentHost = window.location.origin;
     const config = {
         method: 'get',
-        url: 'http://172.20.0.33:7006/weather',
+        url: `${currentHost}/weather`,
         maxContentLength: Infinity
     }
 

@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export async function getInfoVoice() {
+    const currentHost = window.location.origin;
     const config = {
-        url: 'http://172.17.10.12:7010/get/pattern',
+        url: `${currentHost}/get/pattern`,
         method: 'get',
         maxContentLenght: Infinity
     }

@@ -57,23 +57,22 @@ export const getInitialInfo = (flight: any, isRus: any) => {
 
 export const stateTimedelay = (flight: any, isRus: any) => {
     return (
-        flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
-            (isRus
-                ? ` ▪ Ожидается в ${flight?.timedelay}`
-                : ` ▪ Expected in ${flight?.timedelay}`)
-            : ''
+        // flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
+        flight.arr
+            ? ` ▪ Ожидается в ${flight.timedelay}`
+            : ""
+        // ` ▪ Задержан до ${flight.timedelay}`
+        // flight?.tookoff === "ВЫЛ"
+        //     ? ` ▪ Expected at ${flight.timedelay}`
+        //     : ` ▪ Delayed until ${flight.timedelay}`;
+
+
     )
 
 }
 export const stateHall = (flight: any, isRus: any) => {
     return isRus ? `Терминал ${flight?.hall}` : `Terminal ${flight?.hall}`
 }
-//причина обстоятельств если есть
-// const codedelay = (flight) => {
-//     return (
-
-//     )
-// }
 
 export const getDelayedInfo = (flight: any, isRus: any) => {
     return isRus ?
@@ -90,6 +89,17 @@ export const colors = (flight: any, type: string, isRus: any) => {
         return type === "border" ? "border-l-4 border-gray-600" : "bg-gradient-to-r from-green-800 to-gray-900";
     }
 }
+// export const Codedelay = (flight:any) => {
+//     return (flight?.Codedelay && flight?.Codedelay) 
+// }
+
+// export const thr2 = (flight: any, isRus: any) => {
+//     return (isRus ? (flight?.thr2 ? flight?.thr2 : "") : "")
+// }
+
+// export const ex_scheddate = (flight: any) => {
+//     return (flight?.ex_scheddate && (flight?.ex_scheddate))
+// }
 
 export const hasContent = (flight: any, isRus: any) => {
     return (
