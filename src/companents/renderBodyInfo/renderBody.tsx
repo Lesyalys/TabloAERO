@@ -8,8 +8,8 @@ export const tbrdbegin = (flight: any, isRus: any) => {
         isRus
             // ? (flight?.tbrdbegin ? ` Начало посадки в ${flight?.tbrdbegin}` : "")
             // : (flight?.tbrdbegin ? ` Start of boarding at ${flight?.tbrdbegin}` : "")
-            ? (flight?.tbrdbegin ? ` ▪ Начало посадки в ${flight?.tbrdbegin}` : "")
-            : (flight?.tbrdbegin ? ` ▪ Boarding at ${flight?.tbrdbegin}` : "")
+            ? (flight?.tbrdbegin ? ` • Начало посадки в ${flight?.tbrdbegin}` : "")
+            : (flight?.tbrdbegin ? ` • Boarding at ${flight?.tbrdbegin}` : "")
     )
 }
 
@@ -18,24 +18,24 @@ export const tchkbegin = (flight: any, isRus: any) => {
         isRus
             // ? (flight?.tbrdbegin ? `  Начало регистрации в ${flight?.tchkbegin}` : "")
             // : (flight?.tbrdbegin ? `  Start of registration in ${flight?.tchkbegin}` : "")
-            ? (flight?.tbrdbegin ? ` ▪ Начало регистрации в ${flight?.tchkbegin}` : "")
-            : (flight?.tbrdbegin ? ` ▪ Registration in ${flight?.tchkbegin}` : "")
+            ? (flight?.tbrdbegin ? ` • Начало регистрации в ${flight?.tchkbegin}` : "")
+            : (flight?.tbrdbegin ? ` • Registration in ${flight?.tchkbegin}` : "")
     )
 }
 
 export const checkong = (flight: any, isRus: any) => {
     return (
         isRus
-            ? (flight?.checking && flight?.tchkend ? ` ▪ Регистрация заканчивается в ${flight?.tchkend}` : "")
-            : (flight?.checking && flight?.tchkend ? ` ▪ Registration ends at ${flight?.tchkend}` : "")
+            ? (flight?.checking && flight?.tchkend ? ` • Регистрация заканчивается в ${flight?.tchkend}` : "")
+            : (flight?.checking && flight?.tchkend ? ` • Registration ends at ${flight?.tchkend}` : "")
     )
 }
 
 export const boarding = (flight: any, isRus: any) => {
     return (
         isRus
-            ? (flight?.boarding && flight?.tbrdend ? ` ▪ Посадка заканчивается в ${flight?.tbrdend}` : "")
-            : (flight?.boarding && flight?.tbrdend ? ` ▪ Boarding ends at ${flight?.tbrdend}` : "")
+            ? (flight?.boarding && flight?.tbrdend ? ` • Посадка заканчивается в ${flight?.tbrdend}` : "")
+            : (flight?.boarding && flight?.tbrdend ? ` • Boarding ends at ${flight?.tbrdend}` : "")
     )
 }
 
@@ -50,8 +50,8 @@ export const desk = (flight: any, isRus: any) => {
 
 export const getInitialInfo = (flight: any, isRus: any) => {
     return isRus
-        ? (flight?.landed === "ПРИ" ? " ▪ Прибыл" : (flight?.tookoff === "ВЫЛ" ? ' ▪ Вылетел' : ''))
-        : (flight?.landed === "ПРИ" ? " ▪ arrived" : (flight?.tookoff === "ВЫЛ" ? ' ▪ departure' : ''))
+        ? (flight?.landed === "ПРИ" ? " • Прибыл" : (flight?.tookoff === "ВЫЛ" ? ' • Вылетел' : ''))
+        : (flight?.landed === "ПРИ" ? " • arrived" : (flight?.tookoff === "ВЫЛ" ? ' • departure' : ''))
 }
 
 
@@ -59,12 +59,12 @@ export const stateTimedelay = (flight: any, isRus: any) => {
     return (
         // flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
         flight.arr
-            ? ` ▪ Ожидается в ${flight.timedelay}`
+            ? ` • Ожидается в ${flight.timedelay}`
             : ""
-        // ` ▪ Задержан до ${flight.timedelay}`
+        // ` • Задержан до ${flight.timedelay}`
         // flight?.tookoff === "ВЫЛ"
-        //     ? ` ▪ Expected at ${flight.timedelay}`
-        //     : ` ▪ Delayed until ${flight.timedelay}`;
+        //     ? ` • Expected at ${flight.timedelay}`
+        //     : ` • Delayed until ${flight.timedelay}`;
 
 
     )
@@ -76,8 +76,8 @@ export const stateHall = (flight: any, isRus: any) => {
 
 export const getDelayedInfo = (flight: any, isRus: any) => {
     return isRus ?
-        (flight?.tchkbegin ? ` ▪ Регистрация ${flight?.tchkbegin}` : '')
-        : (flight?.tchkbegin ? ` ▪ Registration ${flight?.tchkbegin}` : '')
+        (flight?.tchkbegin ? ` • Регистрация ${flight?.tchkbegin}` : '')
+        : (flight?.tchkbegin ? ` • Registration ${flight?.tchkbegin}` : '')
 }
 
 export const colors = (flight: any, type: string, isRus: any) => {
@@ -119,7 +119,7 @@ export const ex_scheddate = (flight: any, isRus: any) => {
     const monthName = months[parseInt(mounth) - 1]
     const nameWeek = weekDays[date.getDay()]
     return (
-        `${day} ${monthName} ${nameWeek}`
+        `${day} ${monthName} • ${nameWeek}`
     )
 }
 

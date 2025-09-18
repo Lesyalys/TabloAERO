@@ -8,16 +8,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { GetTimetable } from '../API/GetTimetable.js'
 import { GetTimetableDU } from '../API/GetTimetableDU.js'
 import { getImageCompanies } from '../API//GetImageCompany.js'
+import { ProgressBarCSS } from './companents/ui/ProgressBarCSS.jsx';
 
 function App() {
   const [correntPage, setCorrentPage] = useState(0);
   const [cycel, setCycel] = useState(0);
   const [data, setData] = useState({ arr: [], dep: [], image: '' });
   const [loading, setLoading] = useState(true);
+  // const [progress, setProgress] = useState(0);
 
   const featchData = async () => {
     try {
-      // console.log("DATAS RELOAD");
+      console.log("DATAS RELOAD");
       const [arr, dep] = await Promise.all([
         new Promise(res => GetTimetable(res)),
         new Promise(res => GetTimetableDU(res)),
@@ -70,10 +72,13 @@ function App() {
   }, []);
 
   useEffect(() => {
+
     const needsPagination = data.arr.length > 4 || data.dep.length > 4;
     const maxArrPags = Math.ceil(data.arr.length / 5);
     const maxDepPags = Math.ceil(data.dep.length / 5);
     const totalPage = Math.max(maxArrPags, maxDepPags, 1);
+
+    // setProgress(0);
 
     const i = setInterval(() => {
       if (needsPagination) {
@@ -84,7 +89,18 @@ function App() {
         setCycel(i => i === 0 ? 1 : 0)
       }
     }, 15000)
-    return () => clearInterval(i);
+
+    // const setIntervali = setInterval(() => {
+    //   setProgress((i) => {
+    //     if (i > 100) {
+    //       return 0;
+    //     } else {
+    //       return i + (100 / (15000 / 100));
+    //     }
+
+    //   });
+    // }, 100)
+    return () => { clearInterval(i) };
   }, [data.arr, data.dep, correntPage]);
 
   const pagination = (data, pages) => {
@@ -107,6 +123,7 @@ function App() {
     <AnimatePresence mode='wait'>
 
       <div >
+        <ProgressBarCSS />
         <span className='hidden md:block'>
           <Header cycel={cycel} />
         </span>

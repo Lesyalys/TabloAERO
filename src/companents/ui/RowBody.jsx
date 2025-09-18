@@ -69,7 +69,7 @@ const RowBody = ({ data, cycel }) => {
                 {data.map((flight, index) => (
                     <div key={index} className="colum items-start">
                         {(firstArrToday === flight || firstDepToday === flight) && (flight !== firstDep && flight !== firstArr) && (
-                            <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-lg mt-2 mb-2">
+                            <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-[3px] mt-2 mb-2">
                                 {/* {flight?.ex_scheddate} */}
                                 {ex_scheddate([date.getDate().toString(), m.toString()], isRus)}
                             </span>)
