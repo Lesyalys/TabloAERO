@@ -68,7 +68,7 @@ export const stateTimedelay = (flight: any, isRus: any) => {
                 ? ""
                 // ? <span className="text-white"> • Прилетит по расписанию</span>
                 : <span className="text-yellow-400"> • Ожидается в {flight.timedelay}</span>
-            : flight?.timedelay ? <span className="text-red-400">  • Задержан до {flight.timedelay}</span> : ''
+            : flight?.timedelay ? <span className="text-yellow-400">  • Задержан до {flight.timedelay}</span> : ''
 
 
     )
@@ -94,40 +94,38 @@ export const getDelayedInfo = (flight: any, isRus: any) => {
 
 //Need more info
 export const Codedelay = (flight: any) => {
-    return (
-        flight === 'Поздн.приб.%' && 'Позднее прибытие'
-    )
+    let data = '';
+    switch (flight) {
+        case 'Поздн.приб.%':
+            data = 'Позднее прибытие'
+            break;
+        case 'решение а/к%':
+            data = 'Решение авиакомпании'
+            break;
+        default:
+            break;
+    }
+    return (data)
 }
 
 // export const thr2 = (flight: any, isRus: any) => {
 //     return (isRus ? (flight?.thr2 ? flight?.thr2 : "") : "")
 // }
 
-export const ex_scheddate = (flight: any, isRus: any) => {
-    console.log(flight[1])
+// export class checkData {
+//     this.data: string;
 
-    const day = flight[0];
-    const mounth = flight[1];
-    const curentYear = new Date().getFullYear();
-    const date = new Date(curentYear, parseInt(mounth) - 1, parseInt(day));
+//     const datas = (data:any) => {
+//          this.data = data;
+//     }
+//         const firstArr = (data) => {return data.find(item => item.ex_scheddate && item.dep)};
+//         const firstDep = (data) => {return data.find(item => item.ex_scheddate && item.arr)};
+//         const firstArrToday = data.find(item => item.arr);
+//         const firstDepToday = data.find(item => item.dep);
+//         const date = new Date();
+//         const m = date.getMonth() + 1;
+// } 
 
-    const weekDays = isRus
-        ? ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"]
-        : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const months = isRus ? [
-        "января", "февраля", "марта", "апреля", "мая", "июня",
-        "июля", "августа", "сентября", "октября", "ноября", "декабря"
-    ]
-        :
-        ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"]
-
-    const monthName = months[parseInt(mounth) - 1]
-    const nameWeek = weekDays[date.getDay()]
-    return (
-        `${day} ${monthName} • ${nameWeek}`
-    )
-}
 
 export const hasContent = (flight: any, isRus: any) => {
     return (

@@ -11,12 +11,11 @@ import {
     tbrdbegin,
     desk,
     hasContent,
-    ex_scheddate,
     Codedelay,
     TimeCheck
 } from '../renderBodyInfo/renderBody.tsx'
 import { colors } from "../renderBodyInfo/Color.jsx";
-// import { getImageCompany } from "../../../API/GetImageCompany";
+import { ex_scheddate } from "../renderBodyInfo/DateRenter.jsx";
 
 const RowBody = ({ data, cycel }) => {
     // console.log(data)
@@ -81,11 +80,6 @@ const RowBody = ({ data, cycel }) => {
                                 {ex_scheddate(flight?.ex_scheddate.split((".")[0]), isRus)}
                             </span>)
                         }
-                        {/* {tchkbegin(flight) || tbrdbegin(flight) || checkong(flight) || boarding(flight) && */}
-                        {/* {flight?.ex_scheddate &&
-                            <span key={index} className="bg-gray-800">{flight?.ex_scheddate.replace(/\./g, "/")}</span>
-                        } */}
-                        {/* } */}
                         <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-[50%_25%_25%] p-1 items-center rounded-lg text-left  whitespace-normal break-words ${colors(flight, "border")}`}>
                             <span className=" truncate pl-1 flex flex-row gap-2 justify-start ">
                                 <span className=" md:font-bold">
@@ -111,12 +105,10 @@ const RowBody = ({ data, cycel }) => {
                             <span className="truncate text-[#ffffff] text-center  whitespace-normal break-words">
                                 {infoMap[index]}
                             </span>
-                            {/* <span className="truncate flex justify-end"> */}
-                            {/* </span> */}
                             {hasContent(flight, isRus) &&
                                 (<span span className={`pl-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
-                                    <hr className={`mt-2 border-lg  border-[#444444]`} />
-                                    <span className="text-red-400">
+                                    {/* <hr className={`mt-2 border-lg  border-[#444444]`} /> */}
+                                    <span className={` ${colors(flight, "text")}`}>
                                         {Codedelay(flight?.codedelay)}
                                     </span>
                                     {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
