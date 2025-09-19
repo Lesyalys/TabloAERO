@@ -71,7 +71,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("paginastion")
     const needsPagination = data.arr.length > 6 || data.dep.length > 6;
     const maxArrPags = Math.ceil(data.arr.length / 6);
     const maxDepPags = Math.ceil(data.dep.length / 6);
@@ -80,12 +79,16 @@ function App() {
     // setProgress(0);
 
     const i = setInterval(() => {
+      console.log("paginastion")
       if (needsPagination) {
-        setCorrentPage(prev => (prev + 1) % totalPage);
-      }
-      if (correntPage === totalPage - 1) {
-        // const [cycel, setCycel] = useState(0);
-        setCycel(i => i === 0 ? 1 : 0)
+        setCorrentPage(prev => {
+          const nextPage = (prev + 1) % totalPage;
+          if (nextPage === 0) {
+            // const [cycel, setCycel] = useState(0);
+            setCycel(i => i === 0 ? 1 : 0)
+          }
+          return nextPage;
+        });
       }
     }, 15000)
 
