@@ -1,3 +1,5 @@
+// import { time } from "framer-motion";
+
 export const renderFlightNumber = (flight: any) => {
     if (!flight?.company || !flight?.flight) return 'N/A';
     return `${flight.company} ${flight.flight}`;
@@ -5,90 +7,92 @@ export const renderFlightNumber = (flight: any) => {
 
 export const tbrdbegin = (flight: any, isRus: any) => {
     return (
-        isRus
-            // ? (flight?.tbrdbegin ? ` Начало посадки в ${flight?.tbrdbegin}` : "")
-            // : (flight?.tbrdbegin ? ` Start of boarding at ${flight?.tbrdbegin}` : "")
-            ? (flight?.tbrdbegin ? ` • Начало посадки в ${flight?.tbrdbegin}` : "")
-            : (flight?.tbrdbegin ? ` • Boarding at ${flight?.tbrdbegin}` : "")
+        flight?.tbrdbegin ?
+            <span className="text-green-400">
+                {isRus ? '• Начало посадки в ' : ' • Boarding at '}{flight?.tbrdbegin}
+            </span>
+            : ""
     )
 }
 
 export const tchkbegin = (flight: any, isRus: any) => {
     return (
-        isRus
-            // ? (flight?.tbrdbegin ? `  Начало регистрации в ${flight?.tchkbegin}` : "")
-            // : (flight?.tbrdbegin ? `  Start of registration in ${flight?.tchkbegin}` : "")
-            ? (flight?.tbrdbegin ? ` • Начало регистрации в ${flight?.tchkbegin}` : "")
-            : (flight?.tbrdbegin ? ` • Registration in ${flight?.tchkbegin}` : "")
+        flight?.tbrdbegin ? <span className="text-green-400">
+            {isRus ? ' • Начало регистрации в ' : ' • Registration in '}{flight?.tchkbegin}
+        </span>
+            : ""
     )
 }
 
 export const checkong = (flight: any, isRus: any) => {
     return (
-        isRus
-            ? (flight?.checking && flight?.tchkend ? ` • Регистрация заканчивается в ${flight?.tchkend}` : "")
-            : (flight?.checking && flight?.tchkend ? ` • Registration ends at ${flight?.tchkend}` : "")
+        flight?.checking && flight?.tchkend ?
+            <span className="text-yellow-400">{isRus ? ` • Регистрация заканчивается в ` : ` • Registration ends at `}{flight?.tchkend}
+            </span>
+            : ""
     )
 }
 
 export const boarding = (flight: any, isRus: any) => {
     return (
-        isRus
-            ? (flight?.boarding && flight?.tbrdend ? ` • Посадка заканчивается в ${flight?.tbrdend}` : "")
-            : (flight?.boarding && flight?.tbrdend ? ` • Boarding ends at ${flight?.tbrdend}` : "")
+        flight?.boarding && flight?.tbrdend ?
+            <span className="text-yellow-400">{isRus ? ` • Посадка заканчивается в ` : ` • Boarding ends at `}{flight?.tbrdend}
+            </span>
+            : ""
     )
 }
 
 export const desk = (flight: any, isRus: any) => {
     return (
-        isRus
-            ? (flight?.desk ? `Стойка ${flight?.desk}` : "")
-            : (flight?.desk ? `Desk ${flight?.desk}` : "")
+        flight?.desk ? (isRus ? `Стойка ${flight?.desk}` : `Desk ${flight?.desk}`) : ""
     )
 }
 
 
 export const getInitialInfo = (flight: any, isRus: any) => {
-    return isRus
-        ? (flight?.landed === "ПРИ" ? " • Прибыл" : (flight?.tookoff === "ВЫЛ" ? ' • Вылетел' : ''))
-        : (flight?.landed === "ПРИ" ? " • arrived" : (flight?.tookoff === "ВЫЛ" ? ' • departure' : ''))
+    return (
+        flight?.landed === "ПРИ"
+            ? <span className="text-green-400">{isRus ? '• Прибыл' : '• arrived'}</span>
+            : (flight?.tookoff === "ВЫЛ" ? <span className="text-yellow-400">{isRus ? '• Вылетел' : '• departure'}</span>
+                : ''
+            ))
 }
 
 
 export const stateTimedelay = (flight: any, isRus: any) => {
+    console.log(flight?.time, flight?.timedelay)
     return (
         // flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
         flight.arr
-            ? ` • Ожидается в ${flight.timedelay}`
-            : (flight?.timedelay ? ` • Задержан до ${flight.timedelay}` : '')
-        // ` • Задержан до ${flight.timedelay}`
-        // flight?.tookoff === "ВЫЛ"
-        //     ? ` • Expected at ${flight.timedelay}`
-        //     : ` • Delayed until ${flight.timedelay}`;
+            ? (flight?.time === flight?.timedelay)
+                ? ""
+                // ? <span className="text-white"> • Прилетит по расписанию</span>
+                : <span className="text-yellow-400"> • Ожидается в {flight.timedelay}</span>
+            : flight?.timedelay ? <span className="text-red-400">  • Задержан до {flight.timedelay}</span> : ''
 
 
     )
 
+}
+
+export const TimeCheck = (flight: any) => {
+    return (
+        (flight?.time !== flight?.timedelay) && flight?.timedelay != undefined
+            ? <span className="text-white">{flight?.timedelay}<p className=" line-through flex flex-col text-gray-300">{flight?.time}</p></span>
+            : <span>{flight?.time}</span>
+    )
 }
 export const stateHall = (flight: any, isRus: any) => {
     return isRus ? `Терминал ${flight?.hall}` : `Terminal ${flight?.hall}`
 }
 
 export const getDelayedInfo = (flight: any, isRus: any) => {
-    return isRus ?
-        (flight?.tchkbegin ? ` • Регистрация ${flight?.tchkbegin}` : '')
-        : (flight?.tchkbegin ? ` • Registration ${flight?.tchkbegin}` : '')
+    return flight?.tchkbegin
+        ? <span className="text-yellow-400">{isRus ? '• Регистрация ' : '• Registration '}{flight?.tchkbegin}</span>
+        : ''
 }
 
-export const colors = (flight: any, type: string, isRus: any) => {
-    if
-        (hasContent(flight, isRus)) {
-        return type === "border" ? "border-l-4 border-green-800" : "bg-gradient-to-r from-[#141414] to-[#282828]";
-    }
-    else {
-        return type === "border" ? "border-l-4 border-gray-600" : "bg-gradient-to-r from-green-800 to-gray-900";
-    }
-}
+//Need more info
 export const Codedelay = (flight: any) => {
     return (
         flight === 'Поздн.приб.%' && 'Позднее прибытие'

@@ -3,19 +3,19 @@ import {
     renderFlightNumber,
     checkong,
     boarding,
-    colors,
     getInitialInfo,
     stateTimedelay,
     stateHall,
-    getDelayedInfo,
+    // getDelayedInfo,
     tchkbegin,
     tbrdbegin,
     desk,
     hasContent,
-    // thr2,
     ex_scheddate,
-    Codedelay
+    Codedelay,
+    TimeCheck
 } from '../renderBodyInfo/renderBody.tsx'
+import { colors } from "../renderBodyInfo/Color.jsx";
 // import { getImageCompany } from "../../../API/GetImageCompany";
 
 const RowBody = ({ data, cycel }) => {
@@ -68,15 +68,15 @@ const RowBody = ({ data, cycel }) => {
         <div className="w-full md:w-1/2 last:mr-0">
             <ul className="uppercase last:mb-0">
                 {data.map((flight, index) => (
-                    <div key={index} className="colum items-start">
+                    <div key={index} className="colum items-start ">
                         {(firstArrToday === flight || firstDepToday === flight) && (flight !== firstDep && flight !== firstArr) && (
-                            <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-[3px] mt-2 mb-2">
+                            <span className="truncate pl-3 p-1 flex flex-row gap-2 justify-start bg-[#262626] rounded-[3px] mt-2 mb-2  font-bold">
                                 {/* {flight?.ex_scheddate} */}
                                 {ex_scheddate([date.getDate().toString(), m.toString()], isRus)}
                             </span>)
                         }
                         {(firstArr === flight || firstDep === flight) && (
-                            <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#3b3b3b] rounded-[3px] mt-2 mb-2">
+                            <span className="truncate pl-3 flex flex-row gap-2 justify-start bg-[#262626] rounded-[3px] mt-2 mb-2 font-bold">
                                 {/* {flight?.ex_scheddate} */}
                                 {ex_scheddate(flight?.ex_scheddate.split((".")[0]), isRus)}
                             </span>)
@@ -86,10 +86,11 @@ const RowBody = ({ data, cycel }) => {
                             <span key={index} className="bg-gray-800">{flight?.ex_scheddate.replace(/\./g, "/")}</span>
                         } */}
                         {/* } */}
-                        <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-[50%_25%_25%] p-1 items-center rounded-lg text-left  whitespace-normal break-words ${colors(flight, "border", isRus)}`}>
-                            <span className=" truncate pl-1 flex flex-row gap-2 justify-start">
-                                <span>
-                                    {flight?.time}
+                        <li className={`${index % 2 === 0 ? 'bg-[#141414]' : 'bg-[#282828]'} grid grid-cols-[50%_25%_25%] p-1 items-center rounded-lg text-left  whitespace-normal break-words ${colors(flight, "border")}`}>
+                            <span className=" truncate pl-1 flex flex-row gap-2 justify-start ">
+                                <span className=" md:font-bold">
+                                    {/* {flight?.time} */}
+                                    {TimeCheck(flight)}
                                 </span>
                                 <span className="text-[#7bd7fc]  whitespace-normal break-words">
                                     {cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}
@@ -99,28 +100,28 @@ const RowBody = ({ data, cycel }) => {
                                     }
                                 </span>
                             </span>
+                            <span className="truncate text-[#FFCC32] text-center font-sans  flex flex-row justify-center gap-1 items-center">
+                                {flight?.image ?
+                                    <img src={`data:image/png;base64,${flight?.image}`} className="truncate h-16 md:h-10 hidden md:block" alt={`image company ${flight?.company}`} />
+                                    :
+                                    <img src="./empty.png" className="truncate h-16 md:h-10 hidden md:block" alt={`image company ${flight?.company}`} />
+                                }
+                                {renderFlightNumber(flight)}
+                            </span>
                             <span className="truncate text-[#ffffff] text-center  whitespace-normal break-words">
                                 {infoMap[index]}
-                            </span>
-                            <span className="truncate text-[#FFCC32] text-center font-sans font-medium flex flex-row justify-end gap-1 items-center">
-                                {renderFlightNumber(flight)}
-                                {flight?.image ?
-                                    <img src={`data:image/png;base64,${flight?.image}`} className="truncate h-16 md:h-10 hidden md:block" alt="Flight" />
-                                    :
-                                    <img src="./empty.png" className="truncate h-16 md:h-10 hidden md:block" alt="No image" />
-                                }
                             </span>
                             {/* <span className="truncate flex justify-end"> */}
                             {/* </span> */}
                             {hasContent(flight, isRus) &&
                                 (<span span className={`pl-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
                                     <hr className={`mt-2 border-lg  border-[#444444]`} />
-                                    {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
-                                    {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
-                                    {flight?.tbrdbegin ? tbrdbegin(flight, isRus) : boarding(flight, isRus)}
                                     <span className="text-red-400">
                                         {Codedelay(flight?.codedelay)}
                                     </span>
+                                    {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
+                                    {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
+                                    {flight?.tbrdbegin ? tbrdbegin(flight, isRus) : boarding(flight, isRus)}
                                     {/* {stateTimedelay(flight, isRus)} */}
                                 </span>)
                             }

@@ -6,8 +6,8 @@ export async function GetTimetable(cb) {
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `https://tablo.nv-aero.ru/get/xalTabloAR`,
-        // url: `http://172.17.10.12:3020/get/xalTabloAR_TEST`,
+        // url: `https://tablo.nv-aero.ru/get/xalTabloAR`,
+        url: `http://172.17.10.12:3020/get/xalTabloAR_TEST`,
         headers: {}
     };
 

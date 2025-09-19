@@ -5,9 +5,9 @@ export async function GetTimetableDU(cb) {
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `https://tablo.nv-aero.ru/get/xalTabloDU`,
+        // url: `https://tablo.nv-aero.ru/get/xalTabloDU`,
         // url: `http://172.17.0.19:3001/get/xalTabloDU`,
-        // url: `http://172.17.10.12:3020/get/xalTabloDU_TEST`,
+        url: `http://172.17.10.12:3020/get/xalTabloDU_TEST`,
         headers: {}
     };
 
