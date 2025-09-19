@@ -107,7 +107,7 @@ const RowBody = ({ data, cycel }) => {
                                 {infoMap[index]}
                             </span>
                             {hasContent(flight, isRus) &&
-                                (<span span className={`mt-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3  flex-row`}>
+                                (<span span className={`mt-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3 flex-wrap`}>
                                     {/* <hr className={`mt-2 border-lg  border-[#444444]`} /> */}
                                     <InfoIcon color={colors(flight, "text")} />
                                     {Codedelay(flight?.codedelay, isRus)}

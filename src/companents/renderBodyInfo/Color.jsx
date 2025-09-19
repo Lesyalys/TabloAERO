@@ -6,6 +6,10 @@ export const colors = (flight, type) => {
     if (flight?.tookoff === "ВЫЛ") {
         return type === "border" ? "border-l-4 border-yellow-500" : "#fdc700";
     }
+    //заканчиваеться регистрация и посадка
+    if (flight?.tchkend || flight?.tbrdend ) {
+        return type === "border" ? "border-l-4 border-green-500" : "#05df72";
+    }
 
     // Если рейс задержан (для вылетающих)
     if (flight?.timedelay && flight.dep && flight?.time !== flight?.timedelay) {
@@ -27,8 +31,8 @@ export const colors = (flight, type) => {
 };
 
 export const colorStatus = (flight) => {
-    const info = (flight?.time === flight?.timedelay || flight?.timedelay)
-    const infoGreen = (flight?.tbrdbegin || flight?.tchkbegin || flight?.landed === "ПРИ")
+    const info = ((flight?.time === flight?.timedelay || flight?.timedelay) && flight?.landed !== "ПРИ")
+    const infoGreen = (flight?.tbrdbegin || flight?.tchkbegin || flight?.landed === "ПРИ" || (flight?.boarding && flight?.tbrdend))
     return(
         info
         ? 'text-yellow-400'

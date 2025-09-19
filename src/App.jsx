@@ -71,10 +71,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-
-    const needsPagination = data.arr.length > 4 || data.dep.length > 4;
-    const maxArrPags = Math.ceil(data.arr.length / 5);
-    const maxDepPags = Math.ceil(data.dep.length / 5);
+    console.log("paginastion")
+    const needsPagination = data.arr.length > 6 || data.dep.length > 6;
+    const maxArrPags = Math.ceil(data.arr.length / 6);
+    const maxDepPags = Math.ceil(data.dep.length / 6);
     const totalPage = Math.max(maxArrPags, maxDepPags, 1);
 
     // setProgress(0);
@@ -100,11 +100,11 @@ function App() {
     //   });
     // }, 100)
     return () => { clearInterval(i) };
-  }, [data.arr, data.dep, correntPage]);
+  }, [data.arr, data.dep]);
 
   const pagination = (data, pages) => {
-    const start = pages * 5;
-    const end = start + 5
+    const start = pages * 6;
+    const end = start + 6
     return data.slice(start, end);
   }
 
