@@ -13,7 +13,8 @@ import {
     desk,
     hasContent,
     // thr2,
-    ex_scheddate
+    ex_scheddate,
+    Codedelay
 } from '../renderBodyInfo/renderBody.tsx'
 // import { getImageCompany } from "../../../API/GetImageCompany";
 
@@ -118,7 +119,7 @@ const RowBody = ({ data, cycel }) => {
                                     {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
                                     {flight?.tbrdbegin ? tbrdbegin(flight, isRus) : boarding(flight, isRus)}
                                     <span className="text-red-400">
-                                        {flight?.Codedelay}
+                                        {Codedelay(flight?.codedelay)}
                                     </span>
                                     {/* {stateTimedelay(flight, isRus)} */}
                                 </span>)

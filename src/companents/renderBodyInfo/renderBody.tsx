@@ -60,7 +60,7 @@ export const stateTimedelay = (flight: any, isRus: any) => {
         // flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
         flight.arr
             ? ` • Ожидается в ${flight.timedelay}`
-            : ""
+            : (flight?.timedelay ? ` • Задержан до ${flight.timedelay}` : '')
         // ` • Задержан до ${flight.timedelay}`
         // flight?.tookoff === "ВЫЛ"
         //     ? ` • Expected at ${flight.timedelay}`
@@ -89,9 +89,11 @@ export const colors = (flight: any, type: string, isRus: any) => {
         return type === "border" ? "border-l-4 border-gray-600" : "bg-gradient-to-r from-green-800 to-gray-900";
     }
 }
-// export const Codedelay = (flight:any) => {
-//     return (flight?.Codedelay && flight?.Codedelay) 
-// }
+export const Codedelay = (flight: any) => {
+    return (
+        flight === 'Поздн.приб.%' && 'Позднее прибытие'
+    )
+}
 
 // export const thr2 = (flight: any, isRus: any) => {
 //     return (isRus ? (flight?.thr2 ? flight?.thr2 : "") : "")
