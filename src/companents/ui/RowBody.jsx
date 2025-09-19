@@ -16,6 +16,7 @@ import {
 } from '../renderBodyInfo/renderBody.tsx'
 import { colors } from "../renderBodyInfo/Color.jsx";
 import { ex_scheddate } from "../renderBodyInfo/DateRenter.jsx";
+import { InfoIcon } from "../icon/InfoIcon.jsx";
 
 const RowBody = ({ data, cycel }) => {
     // console.log(data)
@@ -86,7 +87,7 @@ const RowBody = ({ data, cycel }) => {
                                     {/* {flight?.time} */}
                                     {TimeCheck(flight)}
                                 </span>
-                                <span className="text-[#7bd7fc]  whitespace-normal break-words">
+                                <span className="text-white  whitespace-normal break-words">
                                     {cycel === 0 ? flight?.dest?.split('%')[0] : flight?.dest?.split('%')[1]}
                                     {flight?.thr2 && isRus && (
                                         <span> - {flight?.thr2}
@@ -94,7 +95,7 @@ const RowBody = ({ data, cycel }) => {
                                     }
                                 </span>
                             </span>
-                            <span className="truncate text-[#FFCC32] text-center font-sans  flex flex-row justify-center gap-1 items-center">
+                            <span className="truncate  text-center font-sans  flex flex-row justify-center gap-1 items-center">
                                 {flight?.image ?
                                     <img src={`data:image/png;base64,${flight?.image}`} className="truncate h-16 md:h-10 hidden md:block" alt={`image company ${flight?.company}`} />
                                     :
@@ -106,11 +107,10 @@ const RowBody = ({ data, cycel }) => {
                                 {infoMap[index]}
                             </span>
                             {hasContent(flight, isRus) &&
-                                (<span span className={`pl-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3  flex-col`}>
+                                (<span span className={`mt-2 rounded-lg text-start gap-1 flex text-[75%] mb-1 whitespace-normal break-words text-gray-200 col-span-3  flex-row`}>
                                     {/* <hr className={`mt-2 border-lg  border-[#444444]`} /> */}
-                                    <span className={` ${colors(flight, "text")}`}>
-                                        {Codedelay(flight?.codedelay)}
-                                    </span>
+                                    <InfoIcon color={colors(flight, "text")} />
+                                    {Codedelay(flight?.codedelay, isRus)}
                                     {getInitialInfo(flight, isRus) || stateTimedelay(flight, isRus)}
                                     {flight?.tchkbegin ? tchkbegin(flight, isRus) : checkong(flight, isRus)}
                                     {flight?.tbrdbegin ? tbrdbegin(flight, isRus) : boarding(flight, isRus)}

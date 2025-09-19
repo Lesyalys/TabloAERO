@@ -19,7 +19,6 @@ function App() {
 
   const featchData = async () => {
     try {
-      console.log("DATAS RELOAD");
       const [arr, dep] = await Promise.all([
         new Promise(res => GetTimetable(res)),
         new Promise(res => GetTimetableDU(res)),

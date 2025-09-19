@@ -1,6 +1,6 @@
 
 export const ex_scheddate = (flight, isRus) => {
-    console.log(flight[1])
+    // console.log(flight[1])
 
     const day = flight[0];
     const mounth = flight[1];

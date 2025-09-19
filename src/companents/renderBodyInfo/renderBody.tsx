@@ -1,5 +1,5 @@
 // import { time } from "framer-motion";
-
+import { colorStatus } from "./Color";
 export const renderFlightNumber = (flight: any) => {
     if (!flight?.company || !flight?.flight) return 'N/A';
     return `${flight.company} ${flight.flight}`;
@@ -8,7 +8,7 @@ export const renderFlightNumber = (flight: any) => {
 export const tbrdbegin = (flight: any, isRus: any) => {
     return (
         flight?.tbrdbegin ?
-            <span className="text-green-400">
+            <span className={`${colorStatus(flight)}`}>
                 {isRus ? '• Начало посадки в ' : ' • Boarding at '}{flight?.tbrdbegin}
             </span>
             : ""
@@ -17,7 +17,7 @@ export const tbrdbegin = (flight: any, isRus: any) => {
 
 export const tchkbegin = (flight: any, isRus: any) => {
     return (
-        flight?.tbrdbegin ? <span className="text-green-400">
+        flight?.tchkbegin ? <span className={`${colorStatus(flight)}`}>
             {isRus ? ' • Начало регистрации в ' : ' • Registration in '}{flight?.tchkbegin}
         </span>
             : ""
@@ -27,7 +27,7 @@ export const tchkbegin = (flight: any, isRus: any) => {
 export const checkong = (flight: any, isRus: any) => {
     return (
         flight?.checking && flight?.tchkend ?
-            <span className="text-yellow-400">{isRus ? ` • Регистрация заканчивается в ` : ` • Registration ends at `}{flight?.tchkend}
+            <span className={`${colorStatus(flight)}`}>{isRus ? ` • Регистрация заканчивается в ` : ` • Registration ends at `}{flight?.tchkend}
             </span>
             : ""
     )
@@ -36,7 +36,7 @@ export const checkong = (flight: any, isRus: any) => {
 export const boarding = (flight: any, isRus: any) => {
     return (
         flight?.boarding && flight?.tbrdend ?
-            <span className="text-yellow-400">{isRus ? ` • Посадка заканчивается в ` : ` • Boarding ends at `}{flight?.tbrdend}
+            <span className={`${colorStatus(flight)}`}>{isRus ? ` • Посадка заканчивается в ` : ` • Boarding ends at `}{flight?.tbrdend}
             </span>
             : ""
     )
@@ -52,23 +52,23 @@ export const desk = (flight: any, isRus: any) => {
 export const getInitialInfo = (flight: any, isRus: any) => {
     return (
         flight?.landed === "ПРИ"
-            ? <span className="text-green-400">{isRus ? '• Прибыл' : '• arrived'}</span>
-            : (flight?.tookoff === "ВЫЛ" ? <span className="text-yellow-400">{isRus ? '• Вылетел' : '• departure'}</span>
-                : ''
+            ? <span className={`${colorStatus(flight)}`}>{isRus ? '• Прибыл' : '• arrived'}</span>
+            : (flight?.tookoff === "ВЫЛ" ? <span className={`${colorStatus(flight)}`}>{isRus ? '• Вылетел' : '• departure'}</span>
+                : (flight?.tookoff === "НЕВ" ? <span className={`${colorStatus(flight)}`}>{isRus ? '• Не вылетел' : '• Didnt take off'}</span> : '')
             ))
 }
 
 
 export const stateTimedelay = (flight: any, isRus: any) => {
-    console.log(flight?.time, flight?.timedelay)
+    // console.log(flight?.time, flight?.timedelay)
     return (
         // flight?.time !== flight?.timedelay && flight?.timedelay != undefined ?
         flight.arr
             ? (flight?.time === flight?.timedelay)
                 ? ""
                 // ? <span className="text-white"> • Прилетит по расписанию</span>
-                : <span className="text-yellow-400"> • Ожидается в {flight.timedelay}</span>
-            : flight?.timedelay ? <span className="text-yellow-400">  • Задержан до {flight.timedelay}</span> : ''
+                : <span className={`${colorStatus(flight)}`}> {isRus ? '• Ожидается в ' : '• Expected in '}{flight.timedelay}</span>
+            : flight?.timedelay ? <span className={`${colorStatus(flight)}`}> {isRus ? '• Задержан до ' : '• Detained until '}{flight.timedelay}</span> : ''
 
 
     )
@@ -88,24 +88,28 @@ export const stateHall = (flight: any, isRus: any) => {
 
 export const getDelayedInfo = (flight: any, isRus: any) => {
     return flight?.tchkbegin
-        ? <span className="text-yellow-400">{isRus ? '• Регистрация ' : '• Registration '}{flight?.tchkbegin}</span>
+        ? <span className={`${colorStatus(flight)}`}>{isRus ? '• Регистрация ' : '• Registration '}{flight?.tchkbegin}</span>
         : ''
 }
 
 //Need more info
-export const Codedelay = (flight: any) => {
+export const Codedelay = (flight: any, isRus: any) => {
     let data = '';
     switch (flight) {
         case 'Поздн.приб.%':
-            data = 'Позднее прибытие'
+            isRus
+                ? data = ' • Позднее прибытие'
+                : data = ' • Late arrival'
             break;
         case 'решение а/к%':
-            data = 'Решение авиакомпании'
+            isRus
+                ? data = ' • Решение авиакомпании'
+                : data = ' • Airline decision'
             break;
         default:
             break;
     }
-    return (data)
+    return (<span className={`${colorStatus(flight)}`}>{data}</span>)
 }
 
 // export const thr2 = (flight: any, isRus: any) => {
